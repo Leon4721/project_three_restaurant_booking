@@ -1,0 +1,21 @@
+{% extends 'booking_app/base.html' %}
+
+{% block content %}
+<h2>Book a Table</h2>
+
+<form method="post" class="card p-3 mb-4">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn btn-primary">Book</button>
+</form>
+
+<h2>Menu</h2>
+<ul class="list-group">
+{% for item in menu_items %}
+  <li class="list-group-item d-flex justify-content-between">
+    <span><strong>{{ item.name }}</strong><br>{{ item.description }}</span>
+    <span>£{{ item.price }}</span>
+  </li>
+{% endfor %}
+</ul>
+{% endblock %}
