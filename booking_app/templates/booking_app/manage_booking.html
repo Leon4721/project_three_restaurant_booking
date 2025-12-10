@@ -1,0 +1,52 @@
+{% extends 'booking_app/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+
+  <h2 class="mb-4">Manage Your Booking</h2>
+
+  <form method="POST" class="mb-4">
+    {% csrf_token %}
+    <label>Enter your booking code:</label>
+    <input class="form-control mb-3" type="text" name="booking_code" required>
+    <button class="btn btn-dark">Find Booking</button>
+  </form>
+
+  {% if booking_details %}
+  <div class="card p-4">
+    <h4>Booking Details</h4>
+    <p><strong>Name:</strong> {{ booking_details.name }}</p>
+    <p><strong>Date:</strong> {{ booking_details.date }}</p>
+    <p><strong>Time:</strong> {{ booking_details.time }}</p>
+    <p><strong>Party Size:</strong> {{ booking_details.party_size }}</p>
+    <p><strong>Code:</strong> {{ booking_details.booking_code }}</p>
+  </div>
+  {% endif %}
+
+</div>
+{% extends 'booking_app/base.html' %}
+{% block content %}
+
+<h2 class="h4 mb-3">Find Your Booking</h2>
+
+<div class="card booking-card p-3">
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="form-label">Booking Code</label>
+      <input type="text" class="form-control" name="booking_code" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-control" name="email" required>
+    </div>
+
+    <button class="btn btn-coffee-primary w-100" type="submit">Find Booking</button>
+  </form>
+</div>
+
+{% endblock %}
+
+{% endblock %}

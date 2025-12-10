@@ -47,11 +47,24 @@
       </div>
     {% endfor %}
   {% endif %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'home' %}">Restaurant</a>
+
+    <div>
+      <a class="nav-link d-inline-block text-white" href="{% url 'home' %}">Book</a>
+      <a class="nav-link d-inline-block text-white" href="{% url 'manage_booking' %}">Manage</a>
+    </div>
+  </div>
+</nav>
+<li class="nav-item">
+  <a class="nav-link" href="/manage/">Manage Booking</a>
+</li>
 
   {% block content %}{% endblock %}
 
   <footer class="text-center">
-    <div>Café Central &middot; Demo booking system for coursework</div>
+    <div>Café Central &middot;Unit 3: Back End Developmentk</div>
   </footer>
 </div>
 

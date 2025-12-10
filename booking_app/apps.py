@@ -105,6 +105,27 @@ class BookingAppConfig(AppConfig):
                         description=description,
                         price=price
                     )
+from django import forms
+from .models import Booking, Table
+
+class EditBookingForm(forms.ModelForm):
+    class Meta:
+        model = Booking
+        fields = ['date', 'time', 'guests', 'table']
+
+    def clean(self):
+        cleaned_data = super().clean()
+        table = cleaned_data.get("table")
+        guests = cleaned_data.get("guests")
+
+        # Capacity check
+        if table and guests:
+            if guests > table.capacity:
+                raise forms.ValidationError(
+                    f"This table has a maximum capacity of {table.capacity} guests."
+                )
+
+        return cleaned_data
 
 
         except (OperationalError, ProgrammingError):
