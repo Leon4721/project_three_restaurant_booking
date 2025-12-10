@@ -2,20 +2,37 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import MenuItem, Booking
 from .forms import BookingForm, CancelBookingForm
+from .forms_edit import EditBookingForm
 
 
+# -----------------------
+# HOME - CREATE BOOKING
+# -----------------------
 def home(request):
     if request.method == "POST":
         form = BookingForm(request.POST)
         if form.is_valid():
+
+            # Check for double booking
+            date = form.cleaned_data['date']
+            time = form.cleaned_data['time']
+
+            if Booking.objects.filter(date=date, time=time).exists():
+                messages.error(request, "That time slot is already booked. Please pick another.")
+                return redirect('home')
+
             booking = form.save()
             return redirect('booking_confirmation', code=booking.booking_code)
+
     else:
         form = BookingForm()
 
     return render(request, 'booking_app/home.html', {'form': form})
 
 
+# -----------------------
+# CANCEL BOOKING
+# -----------------------
 def cancel(request):
     if request.method == 'POST':
         form = CancelBookingForm(request.POST)
@@ -38,12 +55,11 @@ def cancel(request):
         form = CancelBookingForm()
 
     return render(request, 'booking_app/cancel_booking.html', {'form': form})
-from django.shortcuts import render
-from .models import Booking
-from django.contrib import messages
-from .forms_edit import EditBookingForm  # add at the top of file
 
 
+# -----------------------
+# MANAGE BOOKING (step 1)
+# -----------------------
 def manage_booking(request):
     """User enters booking code + email to load their booking."""
     booking = None
@@ -65,8 +81,10 @@ def manage_booking(request):
     return render(request, "booking_app/manage_booking.html")
 
 
+# -----------------------
+# EDIT BOOKING
+# -----------------------
 def edit_booking(request, booking_code):
-    """User can edit their booking."""
     booking = Booking.objects.filter(booking_code=booking_code).first()
 
     if not booking:
@@ -90,6 +108,11 @@ def edit_booking(request, booking_code):
         "booking": booking,
         "form": form
     })
+
+
+# -----------------------
+# BOOKING DETAIL (after edit)
+# -----------------------
 def booking_detail(request, booking_code):
     booking = Booking.objects.filter(booking_code=booking_code).first()
 
@@ -100,28 +123,11 @@ def booking_detail(request, booking_code):
     return render(request, "booking_app/booking_detail.html", {
         "booking": booking
     })
-              
-def manage_booking(request):
-    booking_details = None
 
-    if request.method == "POST":
-        code = request.POST.get("booking_code")
-        try:
-            booking_details = Booking.objects.get(booking_code=code)
-        except Booking.DoesNotExist:
-            messages.error(request, "No booking found with that code.")
 
-    return render(request, 'booking_app/manage_booking.html', {
-        'booking_details': booking_details
-    })
+# -----------------------
+# CONFIRMATION PAGE
+# -----------------------
 def booking_confirmation(request, code):
     booking = Booking.objects.get(booking_code=code)
     return render(request, 'booking_app/confirmation.html', {'booking': booking})
-path('confirmed/<str:code>/', views.booking_confirmation, name='booking_confirmation'),
-if form.is_valid():
-    date = form.cleaned_data['date']
-    time = form.cleaned_data['time']
-
-    if Booking.objects.filter(date=date, time=time).exists():
-        messages.error(request, "That time slot is already booked. Please pick another.")
-        return redirect('home')
