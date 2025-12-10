@@ -38,20 +38,23 @@ body {
     box-shadow: 0 10px 18px rgba(0, 0, 0, 0.08);
 }
 
-/* Brown brand buttons */
+/* Default button (blue background, black text) */
 .btn-coffee-primary {
-    background: #7a4b17 !important;
-    border-color: #7a4b17 !important;
-    color: #ffffff !important;
+    background: #007bff !important;    /* blue */
+    border-color: #007bff !important;
+    color: #000 !important;            /* black font */
     font-weight: 600;
     border-radius: 0.5rem;
     padding: 0.6rem 1rem;
 }
 
+/* Hover state (brown background, white text) */
 .btn-coffee-primary:hover {
-    background: #5f380f !important;
-    border-color: #5f380f !important;
+    background: #7a4b17 !important;     /* brown */
+    border-color: #7a4b17 !important;
+    color: #fff !important;             /* white font */
 }
+
 
 /* Alerts (Booking confirmation messages) */
 .alert-success {
@@ -87,26 +90,14 @@ input:focus, select:focus, textarea:focus {
     font-size: 1rem;
 }
 
+.btn-coffee-primary {
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
 /* Footer */
 footer {
     font-size: 0.8rem;
     color: #8b7b6a;
     margin-top: 2rem;
     padding-bottom: 1.5rem;
-}
-/* Default button (blue background, black text) */
-.btn-coffee-primary {
-    background: #007bff !important;    /* blue */
-    border-color: #007bff !important;
-    color: #000 !important;            /* black font */
-    font-weight: 600;
-    border-radius: 0.5rem;
-    padding: 0.6rem 1rem;
-}
-
-/* Hover state (brown background, white text) */
-.btn-coffee-primary:hover {
-    background: #7a4b17 !important;     /* brown */
-    border-color: #7a4b17 !important;
-    color: #fff !important;             /* white font */
 }
