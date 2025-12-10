@@ -9,11 +9,15 @@ def home(request):
 
     if request.method == 'POST':
         form = BookingForm(request.POST)
-        if form.is_valid():
-            try:
-                form.save()
-                messages.success(request, "Booking confirmed!")
-                return redirect('home')
+      if form.is_valid():
+    try:
+        booking = form.save()
+        messages.success(
+            request,
+            f"Your booking code is {booking.booking_code}."
+        )
+        return redirect('home')
+
             except Exception as e:
                 messages.error(request, "This table is already booked at that time.")
     else:

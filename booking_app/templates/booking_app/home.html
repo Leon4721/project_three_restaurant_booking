@@ -22,6 +22,17 @@
   </div>
 </div>
 
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-success shadow-sm p-3 my-3" role="alert" style="border-left: 5px solid #7a4b17;">
+      <strong>Your booking is confirmed!</strong><br>
+      {{ message }}
+      <br>
+      <span class="small text-muted">Keep your booking code safe – you'll need it if you want to cancel.</span>
+    </div>
+  {% endfor %}
+{% endif %}
+
 <div class="row g-4">
   <div class="col-lg-5 order-2 order-lg-1">
     <h2 class="h4 mb-3">Book a table</h2>
