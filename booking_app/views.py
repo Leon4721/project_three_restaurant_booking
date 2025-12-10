@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import MenuItem, Booking
 from .forms import BookingForm, CancelBookingForm
-from .forms_edit import EditBookingForm
+from .forms import EditBookingForm
+
 
 
 # -----------------------
