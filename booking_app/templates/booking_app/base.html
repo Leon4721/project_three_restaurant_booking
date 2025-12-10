@@ -6,7 +6,7 @@
     <title>Café Central – Table Booking</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Load custom café styling -->
+    <!-- Custom Café Styling -->
     <link rel="stylesheet" href="{% static 'booking_app/style.css' %}">
 
     <!-- Bootstrap 5 -->
@@ -16,24 +16,35 @@
 </head>
 <body>
 
+<!-- MAIN CAFÉ NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3a2615;">
   <div class="container">
     <a class="navbar-brand" href="/">Café Central</a>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navMain">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
         <li class="nav-item">
           <a class="nav-link" href="/">Book a Table</a>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/manage/">Manage Booking</a>
+        </li>
+
         <li class="nav-item">
           <a class="nav-link" href="/cancel/">Cancel Booking</a>
         </li>
+
       </ul>
     </div>
   </div>
 </nav>
+<!-- END NAVBAR -->
 
 <div class="container my-4">
 
@@ -47,24 +58,11 @@
       </div>
     {% endfor %}
   {% endif %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container">
-    <a class="navbar-brand" href="{% url 'home' %}">Restaurant</a>
-
-    <div>
-      <a class="nav-link d-inline-block text-white" href="{% url 'home' %}">Book</a>
-      <a class="nav-link d-inline-block text-white" href="{% url 'manage_booking' %}">Manage</a>
-    </div>
-  </div>
-</nav>
-<li class="nav-item">
-  <a class="nav-link" href="/manage/">Manage Booking</a>
-</li>
 
   {% block content %}{% endblock %}
 
-  <footer class="text-center">
-    <div>Café Central &middot;Unit 3: Back End Developmentk</div>
+  <footer class="text-center mt-4">
+    <div>Café Central &middot; Unit 3: Back End Development</div>
   </footer>
 </div>
 
