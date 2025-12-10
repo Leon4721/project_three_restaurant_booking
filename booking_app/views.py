@@ -79,8 +79,8 @@ def edit_booking(request, booking_code):
         if form.is_valid():
             try:
                 form.save()
-                messages.success(request, "Your booking has been updated.")
-                return redirect('home')
+                messages.success(request, "Your booking has been updated successfully.")
+                return redirect('booking_detail', booking_code=booking.booking_code)
             except Exception:
                 messages.error(request, "This table is already booked at that time.")
     else:
@@ -90,7 +90,17 @@ def edit_booking(request, booking_code):
         "booking": booking,
         "form": form
     })
+def booking_detail(request, booking_code):
+    booking = Booking.objects.filter(booking_code=booking_code).first()
 
+    if not booking:
+        messages.error(request, "Booking not found.")
+        return redirect('manage_booking')
+
+    return render(request, "booking_app/booking_detail.html", {
+        "booking": booking
+    })
+              
 def manage_booking(request):
     booking_details = None
 
