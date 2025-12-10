@@ -45,16 +45,59 @@ class BookingAppConfig(AppConfig):
                     Table.objects.create(name=name, capacity=capacity)
 
             # 3) Seed default menu items if none exist
+                       # 3) Seed default menu items if none exist
             if not MenuItem.objects.exists():
                 default_menu = [
-                    ("Espresso", "Rich single-shot espresso.", 2.50),
-                    ("Flat White", "Smooth blend of espresso and velvety steamed milk.", 3.20),
-                    ("Vanilla Latte", "Espresso with steamed milk and vanilla syrup.", 3.80),
-                    ("Mocha", "Chocolate, espresso and steamed milk with whipped cream.", 3.95),
-                    ("House Filter Coffee", "Bottomless freshly brewed filter coffee.", 2.20),
-                    ("Croissant", "Buttery flaky croissant, baked fresh daily.", 2.40),
-                    ("Chocolate Brownie", "Fudgy chocolate brownie with walnut pieces.", 2.80),
-                    ("Avocado Toast", "Sourdough toast topped with smashed avocado and chilli flakes.", 5.50),
+                    (
+                        "Single Origin Ethiopia",
+                        "Light roast with notes of jasmine, bergamot and citrus. Washed process from Yirgacheffe.",
+                        3.80
+                    ),
+                    (
+                        "Kenyan AA Pour Over",
+                        "Bright, juicy cup with blackcurrant and grapefruit acidity. Brewed to order as V60.",
+                        4.20
+                    ),
+                    (
+                        "Colombian House Espresso",
+                        "Our signature double shot blend with dark chocolate, caramel and roasted almond.",
+                        2.80
+                    ),
+                    (
+                        "Tokyo Matcha Latte",
+                        "Ceremonial grade Japanese matcha whisked with micro-foamed milk, naturally sweet and vibrant.",
+                        4.50
+                    ),
+                    (
+                        "New York Cold Brew",
+                        "24-hour cold-steeped coffee served over ice, smooth and low in acidity.",
+                        4.00
+                    ),
+                    (
+                        "Spanish Latte",
+                        "Espresso with steamed milk and a hint of condensed milk for a silky, caramel sweetness.",
+                        3.95
+                    ),
+                    (
+                        "Chai from Mumbai",
+                        "Masala chai infused with cardamom, ginger and cloves, served latte-style.",
+                        3.60
+                    ),
+                    (
+                        "Parisian Butter Croissant",
+                        "All-butter croissant made with French flour, laminated for extra layers and crunch.",
+                        2.80
+                    ),
+                    (
+                        "Lisbon Pastel de Nata",
+                        "Traditional Portuguese custard tart with caramelised top and flaky pastry shell.",
+                        2.60
+                    ),
+                    (
+                        "Brooklyn Chocolate Cookie",
+                        "Soft-baked dark chocolate cookie with sea salt and chunky chips.",
+                        2.50
+                    ),
                 ]
                 for name, description, price in default_menu:
                     MenuItem.objects.create(
@@ -62,6 +105,7 @@ class BookingAppConfig(AppConfig):
                         description=description,
                         price=price
                     )
+
 
         except (OperationalError, ProgrammingError):
             # Happens during migrate / before tables exist – safe to ignore
