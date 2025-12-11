@@ -3,9 +3,9 @@
 
 Café Central is a full-stack restaurant booking platform built with Django and Python where users can book tables online without calling the restaurant. The application features date/time-based bookings, table capacity management, edit/cancel flows via booking codes, and secure staff/admin access.
 
-## Live Project
+## Live Site
 
-`https://project-three-restaurant-booking.onrender.com/`
+[Project Three – Café Central (Live on Render)](https://project-three-restaurant-booking.onrender.com/)
 
 ---
 
