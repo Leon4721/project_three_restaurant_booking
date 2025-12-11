@@ -1,4 +1,5 @@
 # Café Central
+<img width="1626" height="910" alt="ipads" src="https://github.com/user-attachments/assets/4c7d3bc3-c8fd-475e-a3ea-13ba446586f5" />
 
 Café Central is a full-stack restaurant booking platform built with Django and Python where users can book tables online without calling the restaurant. The application features date/time-based bookings, table capacity management, edit/cancel flows via booking codes, and secure staff/admin access.
 
@@ -174,9 +175,9 @@ This project aims to demonstrate:
 
 #### Wireframes
 
-Wireframes were created in **Balsamiq** using a **mobile-first** approach:
+Wireframes were created Using **Balsamiq** 
 
-- **Mobile (320–767px)**  
+- **Mobile**  
   - Single column layout  
   - Booking form stacked vertically with large touch-friendly controls  
   - “Manage booking” section positioned below the main booking form  
