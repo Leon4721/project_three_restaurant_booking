@@ -552,6 +552,13 @@ The project relies on **comprehensive manual testing**, backed by Django’s bui
 
 #### Booking Flow
 
+### Data Model Diagram
+
+The final relational data model was designed and visualised using **dbdiagram.io**.  
+It shows the relationships between `tables`, `bookings` and `menu_items`.
+
+![Entity–relationship diagram for the database](docs/validation/erd.png)
+
 | Test Case                            | Steps                                              | Expected Result                                              | Status |
 | ------------------------------------ | -------------------------------------------------- | ------------------------------------------------------------ | ------ |
 | Create booking – valid data          | Fill in all fields correctly and submit            | Booking created, success message shown, booking code visible | ✅      |
@@ -580,10 +587,43 @@ The project relies on **comprehensive manual testing**, backed by Django’s bui
 | Admin booking management | Use admin to edit or delete a booking | Changes saved and reflected in the live project | ✅      |
 
 ### Code Validation
+### Validator Testing
 
-* **HTML** – Checked with W3C Markup Validation; critical errors fixed. Some Django-specific attributes may generate warnings but do not affect behaviour.
-* **CSS** – Checked with W3C CSS Validator; minor warnings (e.g. vendor prefixes) accepted where non-critical.
-* **Python** – Checked with `flake8`/PEP8; obvious style issues removed from core files (`models.py`, `views.py`, etc.).
+#### HTML – W3C Nu HTML Checker
+
+All key pages were tested using the **Nu HTML Checker** (W3C validator).  
+Each page was checked by URL and returned **“Document checking completed. No errors or warnings to show.”**
+
+- Home page – `https://project-three-restaurant-booking.onrender.com/`
+- Manage booking – `/manage/`
+- Cancel booking – `/cancel/`
+- Staff login – `/staff-login/`
+
+Screenshots of the validation results are included below:
+
+![Home page HTML validation](docs/validation/html-home.png)
+![Cancel page HTML validation](docs/validation/html-cancel.png)
+![Manage page HTML validation](docs/validation/html-manage.png)
+![Staff login HTML validation](docs/validation/html-staff-login.png)
+
+---
+
+#### CSS – W3C CSS Validator
+
+Both CSS files were tested using the **W3C CSS Validation Service** (CSS Level 3 + SVG).  
+Each file passed with **no errors**.
+
+- `style.css` – main site styling  
+- `admin.css` – admin / staff styling
+
+Screenshots of the results:
+
+![style.css CSS validation](docs/validation/css-style.png)
+![admin.css CSS validation](docs/validation/css-admin.png)
+
+---
+
+
 
 ### Responsive Testing
 
@@ -836,7 +876,7 @@ Café Central follows Django’s recommended security practices:
 
 ### Acknowledgements
 
-* Code Institute tutors, mentors, and Slack community for advice and feedback
+* Code Institute tutors, my Peers for advice and feedback
 * Friends and family who tested the booking flow and provided usability feedback
 
 ---
