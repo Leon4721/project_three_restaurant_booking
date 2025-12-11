@@ -2,89 +2,121 @@
 
 {% block content %}
 
-<div class="coffee-hero d-flex flex-column flex-md-row align-items-start align-items-md-center gap-4">
-  <div>
+<!-- HERO SECTION -->
+<div class="coffee-hero d-flex flex-column flex-md-row align-items-start align-items-md-center gap-4 mb-4">
+  <div class="flex-grow-1">
     <div class="tag-pill mb-3">
       ☕ World coffee, one table
     </div>
-    <h1>Welcome to Café Central – Global Roast House</h1>
-    <p>
+    <h1 class="mb-2">Welcome to Café Central – Global Roast House</h1>
+    <p class="mb-3">
       From Ethiopian highlands to Brooklyn rooftops, we roast and pour coffees from around the world.
       Reserve your spot, choose your party size, and we’ll handle the rest.
     </p>
-  </div>
-  <div class="ms-md-auto">
-    <div class="text-end text-md-start">
-      <div class="fw-semibold">Open today</div>
-      <div>08:00 – 20:00</div>
-      <div class="mt-2 small text-muted">Walk-ins welcome, bookings recommended at busy times.</div>
+
+    <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3">
+      <div>
+        <div class="fw-semibold">Open today</div>
+        <div>08:00 – 20:00</div>
+      </div>
+      <div class="text-muted small">
+        Walk-ins welcome, bookings recommended at busy times.
+      </div>
     </div>
+  </div>
+
+  <!-- HEADER IMAGE AREA -->
+  <div class="d-none d-md-block">
+    <img
+      src="{% static 'booking_app/img/coffee-hero.jpg' %}"
+      alt="Café Central interior"
+      class="img-fluid rounded-4 shadow-sm"
+      style="max-width: 320px;">
   </div>
 </div>
 
-{% if messages %}
-  {% for message in messages %}
-    <div class="alert alert-success shadow-sm p-3 my-3" role="alert" style="border-left: 5px solid #7a4b17;">
-      <strong>Your booking is confirmed!</strong><br>
-      {{ message }}
-      <br>
-      <span class="small text-muted">Keep your booking code safe – you'll need it if you want to cancel.</span>
-    </div>
-  {% endfor %}
-{% endif %}
-
+<!-- MAIN CONTENT: FORM + MENU -->
 <div class="row g-4">
-  <div class="col-lg-5 order-2 order-lg-1">
-    <h2 class="h4 mb-3">Book a table</h2>
-    <div class="card booking-card p-3">
-      <form method="post">
+  <!-- Booking form -->
+  <div class="col-lg-6">
+    <div class="card booking-card p-4 h-100">
+      <h2 class="h4 mb-3">Book a table</h2>
+
+      <form method="post" novalidate>
         {% csrf_token %}
         {{ form.non_field_errors }}
 
-        {% for field in form %}
-          <div class="mb-3">
-            <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
-            {{ field }}
-            {% if field.help_text %}
-              <div class="form-text">{{ field.help_text }}</div>
-            {% endif %}
-            {% for error in field.errors %}
-              <div class="text-danger small">{{ error }}</div>
-            {% endfor %}
-          </div>
-        {% endfor %}
+        <div class="mb-3">
+          <label class="form-label" for="id_name">Name</label>
+          {{ form.name }}
+        </div>
 
-        <button class="btn btn-coffee-primary w-100" type="submit">
+        <div class="mb-3">
+          <label class="form-label" for="id_email">Email</label>
+          {{ form.email }}
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="id_phone">Phone</label>
+          {{ form.phone }}
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="id_date">Date</label>
+            {{ form.date }}
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="id_time">Time</label>
+            {{ form.time }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="id_guests">Guests</label>
+            {{ form.guests }}
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="id_table">Table</label>
+            {{ form.table }}
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-coffee-primary w-100 mt-2">
           Confirm Booking
         </button>
+
+        <p class="text-muted small mt-2 mb-0">
+          Note: We’ll email your booking details to the address you provide.
+        </p>
       </form>
     </div>
-    <p class="small text-muted mt-2">
-      Note: We’ll email your booking details to the address you provide.
-    </p>
   </div>
 
-  <div class="col-lg-7 order-1 order-lg-2">
-    <h2 class="h4 mb-3">Our coffee & bites</h2>
-    <div class="card menu-card p-3">
+  <!-- Menu listing -->
+  <div class="col-lg-6">
+    <div class="card menu-card p-4 h-100">
+      <h2 class="h4 mb-3">Our coffee &amp; bites</h2>
+
       {% if menu_items %}
-        <ul class="list-group list-group-flush">
+        <ul class="list-unstyled mb-0">
           {% for item in menu_items %}
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-              <div>
-                <div class="menu-item-name">{{ item.name }}</div>
-                {% if item.description %}
-                  <div class="small text-muted">{{ item.description }}</div>
-                {% endif %}
+            <li class="mb-3">
+              <div class="d-flex justify-content-between">
+                <span class="menu-item-name">{{ item.name }}</span>
+                <span class="menu-price">£{{ item.price }}</span>
               </div>
-              <div class="menu-price">
-                £{{ item.price }}
+              <div class="text-muted small">
+                {{ item.description }}
               </div>
             </li>
           {% endfor %}
         </ul>
       {% else %}
-        <p class="mb-0">Our menu is being updated. Please check back soon.</p>
+        <p class="text-muted mb-0">
+          Our menu is being updated. Please check back soon.
+        </p>
       {% endif %}
     </div>
   </div>

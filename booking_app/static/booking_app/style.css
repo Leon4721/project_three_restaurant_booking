@@ -127,7 +127,7 @@ footer {
 }
 .nav-hero {
   /* Background image behind the nav content */
-  background-image: url("../booking_app/images/header-bg.png");
+  background-image: url("./images/header-bg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
