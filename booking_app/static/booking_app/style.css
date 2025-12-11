@@ -45,23 +45,36 @@ body {
 /* BUTTON STYLE — FINAL VERSION */
 
 /* Default (blue background, black text) */
-.btn.btn-coffee-primary {
-    background-color: #007bff !important;   /* blue */
-    border-color: #007bff !important;
-    color: #000 !important;                 /* black text */
-    font-weight: 600;
-    border-radius: 0.5rem;
-    padding: 0.6rem 1rem;
-    transition: background-color 0.3s ease,
-                color 0.3s ease,
-                border-color 0.3s ease;
+/* Target ALL primary buttons on your site */
+.btn-primary,
+button[type="submit"],
+a.btn {
+    background-color: #2c5aa0 !important; /* Primary blue */
+    border-color: #2c5aa0 !important;
+    color: white !important;
+    transition: all 0.3s ease-in-out;
 }
 
-/* Hover (brown background, white text) */
-.btn.btn-coffee-primary:hover {
-    background-color: #7a4b17 !important;   /* brown */
-    border-color: #7a4b17 !important;
-    color: #ffffff !important;              /* white text */
+/* Hover effect for ALL buttons */
+.btn-primary:hover,
+button[type="submit"]:hover,
+a.btn:hover {
+    background-color: #8b4513 !important; /* Coffee brown */
+    border-color: #8b4513 !important;
+    color: white !important;
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* For Cancel/Delete buttons (optional - keep them distinct) */
+.btn-danger {
+    background-color: #dc3545 !important; /* Keep red for destructive actions */
+    border-color: #dc3545 !important;
+}
+
+.btn-danger:hover {
+    background-color: #a71e2d !important; /* Darker red on hover */
+    border-color: #a71e2d !important;
 }
 
 /* ========================================================= */
