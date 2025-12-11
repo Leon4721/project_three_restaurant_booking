@@ -543,11 +543,9 @@ Validation and constraints:
 * **WAVE** - Web accessibility evaluation tool
 
 #### Python Code Linting
+( 
+Python files were checked using **flake8**:)
 
-Python files were checked using **flake8**:
-
-```bash
-flake8 .
 
 [↑ Back to Top](#contents)
 
