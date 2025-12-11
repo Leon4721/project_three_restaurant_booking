@@ -1,5 +1,4 @@
 {% extends 'booking_app/base.html' %}
-{% load static %}
 
 {% block content %}
 
@@ -10,24 +9,26 @@
     {% csrf_token %}
 
     <div class="mb-3">
-      <label class="form-label">Booking Code</label>
+      <label class="form-label" for="booking_code">Booking Code</label>
       <input
         type="text"
+        id="booking_code"
         class="form-control"
         name="booking_code"
         required>
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Email</label>
+      <label class="form-label" for="email">Email</label>
       <input
         type="email"
+        id="email"
         class="form-control"
         name="email"
         required>
     </div>
 
-    <button class="btn btn-coffee-primary w-100" type="submit">
+    <button type="submit" class="btn btn-coffee-primary w-100">
       Find Booking
     </button>
   </form>
