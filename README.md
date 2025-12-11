@@ -601,10 +601,10 @@ Each page was checked by URL and returned **“Document checking completed. No e
 
 Screenshots of the validation results are included below:
 
-![Home page HTML validation](docs/validation/html-home.png)
-![Cancel page HTML validation](docs/validation/html-cancel.png)
-![Manage page HTML validation](docs/validation/html-manage.png)
-![Staff login HTML validation](docs/validation/html-staff-login.png)
+![Home page HTML validation](docs/validation/html/html-home.png)
+![Cancel page HTML validation](docs/validation/html/html-cancel.png)
+![Manage page HTML validation](docs/validation/html/html-manage.png)
+![Staff login HTML validation](docs/validation/html/html-staff-login.png)
 
 ---
 
@@ -618,8 +618,8 @@ Each file passed with **no errors**.
 
 Screenshots of the results:
 
-![style.css CSS validation](docs/validation/css-style.png)
-![admin.css CSS validation](docs/validation/css-admin.png)
+![style.css CSS validation](docs/validation/css/css-style.png)
+![admin.css CSS validation](docs/validation/css/css-admin.png)
 
 #### Accessibility Testing – WAVE
 
@@ -637,19 +637,19 @@ Screenshots of the final WAVE reports:
 
 - Home page:
 
-  ![WAVE report – home page](docs/validation/wave-home.png)
+  ![WAVE report – home page](docs/validation/wave/wave-home.png
 
 - Manage booking page:
 
-  ![WAVE report – manage booking page](docs/validation/wave-manage.png)
+  ![WAVE report – manage booking page](docs/validation/wave/wave-manage.png)
 
 - Cancel booking page:
 
-  ![WAVE report – cancel booking page](docs/validation/wave-cancel.png)
+  ![WAVE report – cancel booking page](docs/validation/wave/wave-cancel.png)
 
 - Staff login page:
 
-  ![WAVE report – staff login page](docs/validation/wave-staff-login.png)
+  ![WAVE report – staff login page](docs/validation/wave/wave-staff-login.png)
 
 #### Performance & Best Practices – Lighthouse
 
@@ -662,7 +662,7 @@ Desktop – Home page (`/`):
 - Best Practices: **96**
 - SEO: **90**
 
-![Lighthouse – home page desktop report](docs/validation/lighthouse-home-desktop.png)
+![Lighthouse – home page desktop report](docs/validation/lighthouse/lighthouse-home-desktop.png
 
 Mobile – Cancel booking (`/cancel/`):
 
@@ -671,7 +671,7 @@ Mobile – Cancel booking (`/cancel/`):
 - Best Practices: **96**
 - SEO: **90**
 
-![Lighthouse – cancel booking mobile report](docs/validation/lighthouse-cancel-mobile.png)
+![Lighthouse – cancel booking mobile report](docs/validation/lighthouse/lighthouse-cancel-mobile.png)
 
 Mobile – Manage booking (`/manage/`):
 
