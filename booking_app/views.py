@@ -80,7 +80,7 @@ def manage_booking(request):
 # -----------------------
 # EDIT BOOKING
 # -----------------------
-ddef edit_booking(request, booking_code):
+def edit_booking(request, booking_code):
     """User can edit their booking and stay on the editor after saving."""
     booking = get_object_or_404(Booking, booking_code=booking_code)
 
