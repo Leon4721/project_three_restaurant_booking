@@ -6,25 +6,31 @@
 
 <div class="card booking-card p-3 p-md-4">
   <p class="text-muted small mb-3">
-    Enter your booking code and the email you used when booking. If we find a match,
-    we’ll cancel your reservation immediately.
+    Enter the booking code and email you used when booking. If we find a match,
+    your reservation will be cancelled immediately.
   </p>
 
   <form method="post" novalidate>
     {% csrf_token %}
 
-    {{ form.non_field_errors }}
-
     <div class="mb-3">
-      <label class="form-label">Booking Code</label>
-      {{ form.booking_code }}
-      {{ form.booking_code.errors }}
+      <label class="form-label" for="id_booking_code">Booking Code</label>
+      <input
+        type="text"
+        id="id_booking_code"
+        name="booking_code"
+        class="form-control"
+        required>
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Email</label>
-      {{ form.email }}
-      {{ form.email.errors }}
+      <label class="form-label" for="id_email">Email</label>
+      <input
+        type="email"
+        id="id_email"
+        name="email"
+        class="form-control"
+        required>
     </div>
 
     <button class="btn btn-coffee-primary w-100" type="submit">
