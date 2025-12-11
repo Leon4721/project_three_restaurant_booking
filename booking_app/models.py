@@ -1,7 +1,14 @@
+from datetime import time as dt_time
+
 from django.db import models
 from django.utils import timezone
 from django.core.exceptions import ValidationError
 import uuid
+
+
+# Opening hours constants
+OPENING_TIME = dt_time(8, 0)   # 08:00
+CLOSING_TIME = dt_time(21, 0)  # 21:00
 
 
 class Table(models.Model):
@@ -53,6 +60,9 @@ class Booking(models.Model):
     """
     Customer booking for a particular date/time and table.
     Includes a booking code for the user to manage/cancel their booking.
+    Also enforces:
+    - Guests <= table capacity
+    - Time must be within opening hours (08:00–21:00)
     """
     STATUS_CHOICES = [
         ("PENDING", "Pending"),
@@ -103,18 +113,29 @@ class Booking(models.Model):
 
     def clean(self):
         """
-        Extra validation to make sure we don't book more guests
-        than the table can hold.
+        Extra validation to make sure we:
+        - don't book more guests than the table can hold
+        - don't allow bookings outside opening hours (08:00–21:00)
         """
-        if self.table and self.guests > self.table.capacity:
-            raise ValidationError(
-                {
-                    "guests": (
-                        f"Table {self.table.name} can only seat "
-                        f"{self.table.capacity} guests."
-                    )
-                }
+        errors = {}
+
+        # Capacity check
+        if self.table and self.guests and self.guests > self.table.capacity:
+            errors["guests"] = (
+                f"Table {self.table.name} can only seat "
+                f"{self.table.capacity} guests."
             )
+
+        # Opening hours check
+        if self.time:
+            if not (OPENING_TIME <= self.time <= CLOSING_TIME):
+                errors["time"] = (
+                    "We’re open between 08:00 and 21:00. "
+                    "Please choose a time within opening hours."
+                )
+
+        if errors:
+            raise ValidationError(errors)
 
     def __str__(self):
         return f"{self.name} on {self.date} at {self.time} ({self.booking_code})"
