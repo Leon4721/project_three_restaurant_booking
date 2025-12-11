@@ -1,4 +1,5 @@
 {% extends 'booking_app/base.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -11,13 +12,11 @@
     <h1 class="mb-2">Welcome to Café Central – Global Roast House</h1>
     <p class="mb-3">
       From Ethiopian highlands to Brooklyn rooftops, we roast and pour coffees from around the world.
-      Reserve your spot, choose your party size, and we’ll handle the rest.
+      Choose your time, party size, and we’ll have your table waiting.
     </p>
-
-    <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3">
-      <div>
-        <div class="fw-semibold">Open today</div>
-        <div>08:00 – 20:00</div>
+    <div class="d-flex flex-column flex-sm-row gap-2 align-items-start align-items-sm-center">
+      <div class="fw-semibold">
+        Open daily · 8:00 – 22:00
       </div>
       <div class="text-muted small">
         Walk-ins welcome, bookings recommended at busy times.
@@ -28,7 +27,7 @@
   <!-- HEADER IMAGE AREA -->
   <div class="d-none d-md-block">
     <img
-      src="/static/booking_app/img/coffee-hero.jpg"
+      src="{% static 'booking_app/img/coffee-hero.jpg' %}"
       alt="Café Central interior"
       class="img-fluid rounded-4 shadow-sm"
       style="max-width: 320px;">
@@ -39,59 +38,93 @@
 <div class="row g-4">
   <!-- Booking form -->
   <div class="col-lg-6">
-    <div class="card booking-card p-4 h-100">
-      <h2 class="h4 mb-3">Book a table</h2>
+    <div class="card booking-card p-3 p-md-4">
+      <h2 class="h4 mb-3">Book a Table</h2>
+      <p class="text-muted small mb-3">
+        Select your date, time, number of guests and preferred table.
+      </p>
 
       <form method="post" novalidate>
         {% csrf_token %}
+
         {{ form.non_field_errors }}
 
         <div class="mb-3">
-          <label class="form-label" for="id_name">Name</label>
+          <label class="form-label">Name</label>
           {{ form.name }}
+          {{ form.name.errors }}
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="id_email">Email</label>
+          <label class="form-label">Email</label>
           {{ form.email }}
+          {{ form.email.errors }}
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="id_phone">Phone</label>
-          {{ form.phone }}
+          <label class="form-label">Date</label>
+          {{ form.date }}
+          {{ form.date.errors }}
         </div>
 
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label class="form-label" for="id_date">Date</label>
-            {{ form.date }}
-          </div>
-          <div class="col-md-6 mb-3">
-            <label class="form-label" for="id_time">Time</label>
-            {{ form.time }}
-          </div>
+        <div class="mb-3">
+          <label class="form-label">Time</label>
+          {{ form.time }}
+          {{ form.time.errors }}
         </div>
 
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label class="form-label" for="id_guests">Guests</label>
-            {{ form.guests }}
-          </div>
-          <div class="col-md-6 mb-3">
-            <label class="form-label" for="id_table">Table</label>
-            {{ form.table }}
-          </div>
+        <div class="mb-3">
+          <label class="form-label">Number of guests</label>
+          {{ form.guests }}
+          {{ form.guests.errors }}
         </div>
 
-        <button type="submit" class="btn btn-coffee-primary w-100 mt-2">
+        <div class="mb-3">
+          <label class="form-label">Table</label>
+          {{ form.table }}
+          {{ form.table.errors }}
+        </div>
+
+        <button class="btn btn-coffee-primary w-100" type="submit">
           Confirm Booking
         </button>
 
         <p class="text-muted small mt-2 mb-0">
-          Note: We’ll email your booking details to the address you provide.
+          You’ll see your unique booking code on the confirmation screen – keep it safe so you can
+          manage or cancel your booking later.
         </p>
       </form>
     </div>
   </div>
 
-  <
+  <!-- Menu preview -->
+  <div class="col-lg-6">
+    <div class="card menu-card p-3 p-md-4">
+      <h2 class="h4 mb-3">Today’s Coffee & Bakes</h2>
+
+      {% if has_menu_items %}
+        <ul class="list-unstyled mb-0">
+          {% for item in menu_items %}
+            <li class="d-flex justify-content-between align-items-start mb-3 pb-2 border-bottom">
+              <div>
+                <div class="menu-item-name">{{ item.name }}</div>
+                {% if item.description %}
+                  <div class="text-muted small">{{ item.description }}</div>
+                {% endif %}
+              </div>
+              <div class="menu-price ms-3">
+                £{{ item.price }}
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-muted mb-0">
+          Our menu is being updated. Please check back soon.
+        </p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
