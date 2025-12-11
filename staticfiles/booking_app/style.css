@@ -1,0 +1,226 @@
+/* ===============================
+   Café Central – Global Styles
+   Palette: browns & beiges
+   =============================== */
+
+:root {
+    --coffee-bg: #f6f2ec;
+    --coffee-cream: #fdf7ee;
+    --coffee-card: #ffffff;
+    --coffee-border: #d2bfa6;
+    --coffee-brown: #7a4b17;
+    --coffee-brown-dark: #5f380f;
+    --coffee-accent: #c58b4f;
+    --coffee-text: #2b2b2b;
+    --coffee-muted: #8b7b6a;
+}
+
+/* Global body style */
+body {
+    background: var(--coffee-bg);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--coffee-text);
+    line-height: 1.6;
+}
+
+/* Basic typography tweaks */
+h1, h2, h3, h4 {
+    color: #2b1b12;
+    font-weight: 700;
+}
+
+p, label, small {
+    color: var(--coffee-text);
+}
+
+/* ===============================
+   Hero Section
+   =============================== */
+
+.coffee-hero {
+    background: radial-gradient(
+        circle at top left,
+        #f6e9da 0%,
+        #e6cfac 35%,
+        #c4975a 100%
+    );
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    color: #2b1b12;
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* Header labels / tags */
+.tag-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 1rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* ===============================
+   Cards – Booking & Menu
+   =============================== */
+
+.booking-card,
+.menu-card {
+    border-radius: 1rem;
+    border: 1px solid var(--coffee-border);
+    background: var(--coffee-card);
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.06);
+}
+
+/* Slightly warmer background inside cards */
+.booking-card {
+    background: var(--coffee-cream);
+}
+
+/* ===============================
+   Buttons – Coffee Primary
+   =============================== */
+
+/* Default: light beige with dark text */
+.btn-coffee-primary {
+    background: #f3ddbc !important;            /* beige */
+    border-color: #e0c29a !important;
+    color: #20150e !important;                 /* dark text */
+    font-weight: 600;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1rem;
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+/* Hover: rich brown with white text */
+.btn-coffee-primary:hover,
+.btn-coffee-primary:focus,
+.btn-coffee-primary:active {
+    background: var(--coffee-brown) !important;
+    border-color: var(--coffee-brown-dark) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 0 0.15rem rgba(122, 75, 23, 0.3);
+}
+
+/* Remove ugly default outline */
+.btn-coffee-primary:focus-visible {
+    outline: none;
+}
+
+/* ===============================
+   Alerts (Messages)
+   =============================== */
+
+.alert-success,
+.alert-info,
+.alert-warning,
+.alert-danger {
+    border-radius: 0.75rem;
+    border-left: 6px solid var(--coffee-brown) !important;
+    background: #fffaf2 !important;
+    color: var(--coffee-text) !important;
+    font-weight: 500;
+}
+
+/* ===============================
+   Form Inputs
+   =============================== */
+
+input,
+select,
+textarea {
+    background-color: #ffffff !important;
+    color: var(--coffee-text) !important;
+    border: 1px solid var(--coffee-border) !important;
+    border-radius: 0.4rem !important;
+    padding: 0.55rem 0.7rem !important;
+    font-size: 0.95rem;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #b0a393;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--coffee-brown) !important;
+    box-shadow: 0 0 0 0.15rem rgba(122, 75, 23, 0.25) !important;
+    outline: none;
+}
+
+/* ===============================
+   Menu items list
+   =============================== */
+
+.menu-item-name {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.menu-price {
+    font-weight: 700;
+    color: var(--coffee-brown);
+    font-size: 1rem;
+}
+
+/* ===============================
+   Navbar polish
+   =============================== */
+
+/* Your base.html already sets background-color inline;
+   this just refines text colours and hover. */
+
+.navbar-dark .navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #f6e3c7;
+    font-weight: 500;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link.active {
+    color: #ffe9c4;
+    text-decoration: none;
+}
+
+/* ===============================
+   Footer
+   =============================== */
+
+footer {
+    font-size: 0.8rem;
+    color: var(--coffee-muted);
+    margin-top: 2rem;
+    padding-bottom: 1.5rem;
+}
+
+/* ===============================
+   Utility tweaks
+   =============================== */
+
+/* Make cards breathe a bit on mobile */
+@media (max-width: 576px) {
+    .coffee-hero {
+        padding: 1.75rem;
+    }
+
+    .booking-card,
+    .menu-card {
+        padding: 1.5rem !important;
+    }
+}
