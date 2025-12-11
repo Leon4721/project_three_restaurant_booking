@@ -3,30 +3,55 @@
 
 {% block content %}
 
-<h2 class="h4 mb-3">Your Booking Details</h2>
+<h2 class="h4 mb-3">Booking Details</h2>
 
-<div class="card booking-card p-3">
+<div class="card booking-card p-3 p-md-4">
+  <p class="text-muted small mb-3">
+    Keep this code safe – you’ll need it to manage or cancel your booking:
+  </p>
 
-  <p><strong>Name:</strong> {{ booking.name }}</p>
-  <p><strong>Email:</strong> {{ booking.email }}</p>
-  <p><strong>Phone:</strong> {{ booking.phone }}</p>
-
-  <hr>
-
-  <p><strong>Date:</strong> {{ booking.date }}</p>
-  <p><strong>Time:</strong> {{ booking.time }}</p>
-  <p><strong>Guests:</strong> {{ booking.guests }}</p>
-  <p><strong>Table:</strong> {{ booking.table }}</p>
-
-  <hr>
-
-  <p><strong>Booking Code:</strong> {{ booking.booking_code }}</p>
-
-  <div class="mt-3 d-flex gap-2">
-    <a class="btn btn-coffee-primary w-50" href="/manage/{{ booking.booking_code }}/">Edit</a>
-    <a class="btn btn-danger w-50" href="/cancel/">Cancel</a>
+  <div class="mb-3">
+    <span class="fw-semibold">Booking code:</span>
+    <code class="ms-1">{{ booking.booking_code }}</code>
   </div>
 
+  <dl class="row mb-3">
+    <dt class="col-sm-4">Name</dt>
+    <dd class="col-sm-8">{{ booking.name }}</dd>
+
+    <dt class="col-sm-4">Email</dt>
+    <dd class="col-sm-8">{{ booking.email }}</dd>
+
+    <dt class="col-sm-4">Date</dt>
+    <dd class="col-sm-8">{{ booking.date }}</dd>
+
+    <dt class="col-sm-4">Time</dt>
+    <dd class="col-sm-8">{{ booking.time }}</dd>
+
+    <dt class="col-sm-4">Guests</dt>
+    <dd class="col-sm-8">{{ booking.guests }}</dd>
+
+    <dt class="col-sm-4">Table</dt>
+    <dd class="col-sm-8">{{ booking.table }}</dd>
+  </dl>
+
+  <div class="d-flex flex-column flex-sm-row gap-2">
+    <!-- ✅ Correct: go to /edit/<booking_code>/ -->
+    <a href="{% url 'edit_booking' booking.booking_code %}"
+       class="btn btn-coffee-primary flex-fill">
+      Edit this booking
+    </a>
+
+    <a href="{% url 'cancel_booking' %}"
+       class="btn btn-outline-secondary flex-fill">
+      Cancel a booking
+    </a>
+
+    <a href="{% url 'home' %}"
+       class="btn btn-outline-secondary flex-fill">
+      Back to home
+    </a>
+  </div>
 </div>
 
 {% endblock %}

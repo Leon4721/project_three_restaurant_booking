@@ -80,12 +80,9 @@ def manage_booking(request):
 # -----------------------
 # EDIT BOOKING
 # -----------------------
-def edit_booking(request, booking_code):
-    booking = Booking.objects.filter(booking_code=booking_code).first()
-
-    if not booking:
-        messages.error(request, "Booking not found.")
-        return redirect('manage_booking')
+ddef edit_booking(request, booking_code):
+    """User can edit their booking and stay on the editor after saving."""
+    booking = get_object_or_404(Booking, booking_code=booking_code)
 
     if request.method == "POST":
         form = EditBookingForm(request.POST, instance=booking)
@@ -93,10 +90,17 @@ def edit_booking(request, booking_code):
         if form.is_valid():
             try:
                 form.save()
-                messages.success(request, "Your booking has been updated successfully.")
-                return redirect('booking_detail', booking_code=booking.booking_code)
+                messages.success(
+                    request,
+                    "Your booking has been updated. You can edit it again below if you need to."
+                )
+                # Stay on the same edit page
+                return redirect('edit_booking', booking_code=booking.booking_code)
             except Exception:
-                messages.error(request, "This table is already booked at that time.")
+                messages.error(
+                    request,
+                    "This table is already booked at that time. Please choose another time or table."
+                )
     else:
         form = EditBookingForm(instance=booking)
 
@@ -104,7 +108,6 @@ def edit_booking(request, booking_code):
         "booking": booking,
         "form": form
     })
-
 
 # -----------------------
 # BOOKING DETAIL (after edit)
