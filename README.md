@@ -680,7 +680,7 @@ Mobile – Manage booking (`/manage/`):
 - Best Practices: **96**
 - SEO: **90**
 
-![Lighthouse – manage booking mobile report](docs/validation/lighthouse-manage-mobile.png)
+![Lighthouse – manage booking mobile report](docs/validation/lighthouse/lighthouse-manage-mobile.png)
 
 Mobile – Staff login (`/staff-login/`):
 
@@ -689,7 +689,7 @@ Mobile – Staff login (`/staff-login/`):
 - Best Practices: **96**
 - SEO: **90**
 
-![Lighthouse – staff login mobile report](docs/validation/lighthouse-staff-login-mobile.png)
+![Lighthouse – staff login mobile report](docs/validation/lighthouse/lighthouse-staff-login-mobile.png)
 
 ---
 
