@@ -7,19 +7,18 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Load environment variables from a .env file (local only)
+
 load_dotenv()
 
-# Base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY
+
 SECRET_KEY = os.getenv('SECRET_KEY', 'insecure-default-key')  # fallback for dev only
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost 127.0.0.1').split()
 
-# Application definition
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
