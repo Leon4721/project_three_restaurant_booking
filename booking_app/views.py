@@ -142,3 +142,16 @@ def booking_confirmation(request, code):
 
 def staff_login(request):
     return render(request, "booking_app/login.html")
+
+from django.http import HttpResponse
+from django.contrib.auth.models import User
+
+def create_admin_once(request):
+    if not User.objects.filter(username="admin").exists():
+        User.objects.create_superuser(
+            username="admin",
+            email="admin@example.com",
+            password="Admin123!"
+        )
+        return HttpResponse("✅ Admin user created (admin / Admin123!)")
+    return HttpResponse("❌ Admin user already exists")

@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from booking_app.views import create_admin_once
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -19,4 +20,6 @@ urlpatterns = [
     # If your booking_code is a UUIDField, uuid is fine here
    path('confirmed/<str:code>/', views.booking_confirmation, name='booking_confirmation'),
    path('staff-login/', views.staff_login, name='staff_login'),
+   path("create-admin/", create_admin_once),
+
 ]
