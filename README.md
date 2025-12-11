@@ -172,29 +172,95 @@ This project aims to demonstrate:
 - As staff, I want to **edit or delete bookings** on behalf of customers when they call.  
 
 ### Design
-
 #### Wireframes
 
-Wireframes were created Using **Balsamiq** 
+All wireframes were created using **Balsamiq** to plan the layout for four key pages:
 
-- **Mobile**  
-  - Single column layout  
-  - Booking form stacked vertically with large touch-friendly controls  
-  - “Manage booking” section positioned below the main booking form  
-  - Success/error messages displayed as banners near the top  
+- Home page
+- Manage booking page
+- Cancel booking page
+- Staff login page
 
-- **Tablet (768–1023px)**  
-  - Where space allows, a two-column layout:  
-    - Booking form on the left  
-    - Hero text/illustration or booking info on the right  
-  - Increased spacing and padding for readability  
+Each page was designed for **mobile**, **tablet**, and **desktop** breakpoints.  
+Final implementations may differ slightly from the wireframes where usability or responsiveness improvements were identified during development.
 
-- **Desktop (1024px+)**  
-  - Centered booking “card” with supporting hero section  
-  - Consistent header/footer  
-  - Plenty of white space around the main content  
+---
 
-Wireframe screenshots for mobile, tablet and desktop are stored in the project’s `docs/` folder and referenced during testing.
+##### Home Page
+
+-
+  - Single-column layout with the café hero text at the top.  
+  - Booking form stacked vertically with large, touch-friendly inputs and buttons.  
+  - “Manage booking” call-to-action positioned beneath the main booking form.  
+  - Success and error messages displayed as prominent banners near the top of the screen.
+
+- 
+  - Two-column layout where space allows:  
+    - Booking form on the left.  
+    - Hero content (intro text / imagery / opening hours) on the right.  
+  - Increased spacing and padding to improve readability at this size.  
+
+-  
+  - Centered booking “card” with a supporting hero panel next to it.  
+  - Consistent header and footer spanning the full width.  
+  - Generous white space around the booking content to keep the interface clean and focused.
+
+---
+
+##### Manage Booking Page
+
+- 
+  - Single-column layout with a short explanation at the top.  
+  - Simple form asking for the booking code, stacked above the “Find booking” button.  
+  - Validation and error messages (e.g. “Booking not found”) shown directly under the input field.
+
+- 
+  - Form and explanatory text aligned in a light two-column layout where space permits.  
+  - Clear visual hierarchy between the page title, instructions, and the booking-code input.  
+
+- 
+  - Manage booking card centered on the page for focus.  
+  - Optionally shows a side panel with brief help text or example booking codes.  
+  - Consistent navigation back to the Home page and other sections.
+
+---
+
+##### Cancel Booking Page
+
+- 
+  - Single-column confirmation screen summarising the booking (date, time, guests, table type).  
+  - Clear “Cancel booking” button and a secondary “Go back”/“Keep booking” option.  
+  - Warning text emphasising that cancellation is permanent.
+
+- *
+  - Booking details and confirmation controls displayed in a compact card.  
+  - Layout adjusts to keep primary actions (Cancel / Back) visible without scrolling where possible.  
+
+-
+  - Booking details card centered with plenty of surrounding space.  
+  - Buttons styled with clear contrast between the destructive action (cancel) and the safe action (return).  
+
+---
+
+##### Staff Login Page
+
+
+  - Simple single-column login form with email/username and password fields stacked vertically.  
+  - Large, accessible login button plus a brief description of what the staff area is for.  
+  - Validation messages displayed directly beneath the relevant fields.
+
+  - Login card centered with slightly wider fields for easier typing.  
+  - Optional side text explaining security/privacy or linking to internal documentation.  
+
+-
+  - Narrow login panel centered against a clean background to keep focus on authentication.  
+  - Consistent branding and navigation back to the public site.  
+  - Space reserved for potential future additions (e.g. “Forgot password” flow).
+
+---
+
+Wireframe screenshots for all four pages (Home, Manage Booking, Cancel Booking, Staff Login) at **mobile**, **tablet**, and **desktop** sizes are stored in the project’s `docs/` folder and were referenced throughout the build and testing phases.
+
 
 #### Color Scheme
 
