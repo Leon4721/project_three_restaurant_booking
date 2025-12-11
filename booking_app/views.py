@@ -38,29 +38,6 @@ def home(request):
 # -----------------------
 # CANCEL BOOKING
 # -----------------------
-def cancel(request):
-    if request.method == 'POST':
-        form = CancelBookingForm(request.POST)
-        if form.is_valid():
-            code = form.cleaned_data['booking_code']
-            email = form.cleaned_data['email']
-
-            booking = Booking.objects.filter(
-                booking_code=code,
-                email=email
-            ).first()
-
-            if booking:
-                booking.delete()
-                messages.success(request, "Booking cancelled.")
-                return redirect('cancel')
-            else:
-                messages.error(request, "Booking not found.")
-    else:
-        form = CancelBookingForm()
-
-    return render(request, 'booking_app/cancel_booking.html', {'form': form})
-
 def cancel_booking(request):
     if request.method == "POST":
         code = request.POST.get("booking_code")
