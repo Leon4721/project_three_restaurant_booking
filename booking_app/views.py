@@ -11,29 +11,38 @@ from .forms import EditBookingForm
 def home(request):
     # Always load menu items for the right-hand card
     menu_items = MenuItem.objects.all().order_by("name")
+    has_menu_items = menu_items.exists()
 
     if request.method == "POST":
         form = BookingForm(request.POST)
         if form.is_valid():
+            # Check for double booking of the SAME table at the SAME time
+            date = form.cleaned_data["date"]
+            time = form.cleaned_data["time"]
+            table = form.cleaned_data["table"]
 
-            # Check for double booking at the same date & time
-            date = form.cleaned_data['date']
-            time = form.cleaned_data['time']
-
-            if Booking.objects.filter(date=date, time=time).exists():
-                messages.error(request, "That time slot is already booked. Please pick another.")
-                return redirect('home')
-
-            booking = form.save()
-            return redirect('booking_confirmation', code=booking.booking_code)
+            if Booking.objects.filter(date=date, time=time, table=table).exists():
+                messages.error(
+                    request,
+                    "That table is already booked at that time. "
+                    "Please choose a different time or table."
+                )
+                # Re-render page with the existing form + error message
+            else:
+                booking = form.save()
+                return redirect("booking_confirmation", code=booking.booking_code)
     else:
         form = BookingForm()
 
-    return render(request, 'booking_app/home.html', {
-        'form': form,
-        'menu_items': menu_items,
-    })
-
+    return render(
+        request,
+        "booking_app/home.html",
+        {
+            "form": form,
+            "menu_items": menu_items,
+            "has_menu_items": has_menu_items,
+        },
+    )
 
 # -----------------------
 # CANCEL BOOKING
