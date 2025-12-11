@@ -1,5 +1,4 @@
 {% extends 'booking_app/base.html' %}
-{% load static %}
 
 {% block content %}
 
@@ -29,7 +28,7 @@
   <!-- HEADER IMAGE AREA -->
   <div class="d-none d-md-block">
     <img
-      src="{% static 'booking_app/img/coffee-hero.jpg' %}"
+      src="/static/booking_app/img/coffee-hero.jpg"
       alt="Café Central interior"
       class="img-fluid rounded-4 shadow-sm"
       style="max-width: 320px;">
@@ -95,32 +94,4 @@
     </div>
   </div>
 
-  <!-- Menu listing -->
-  <div class="col-lg-6">
-    <div class="card menu-card p-4 h-100">
-      <h2 class="h4 mb-3">Our coffee &amp; bites</h2>
-
-      {% if menu_items %}
-        <ul class="list-unstyled mb-0">
-          {% for item in menu_items %}
-            <li class="mb-3">
-              <div class="d-flex justify-content-between">
-                <span class="menu-item-name">{{ item.name }}</span>
-                <span class="menu-price">£{{ item.price }}</span>
-              </div>
-              <div class="text-muted small">
-                {{ item.description }}
-              </div>
-            </li>
-          {% endfor %}
-        </ul>
-      {% else %}
-        <p class="text-muted mb-0">
-          Our menu is being updated. Please check back soon.
-        </p>
-      {% endif %}
-    </div>
-  </div>
-</div>
-
-{% endblock %}
+  <
