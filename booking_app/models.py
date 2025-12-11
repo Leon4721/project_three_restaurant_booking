@@ -63,6 +63,7 @@ class Booking(models.Model):
     Also enforces:
     - Guests <= table capacity
     - Time must be within opening hours (08:00–21:00)
+    - Date cannot be in the past
     """
     STATUS_CHOICES = [
         ("PENDING", "Pending"),
@@ -116,6 +117,7 @@ class Booking(models.Model):
         Extra validation to make sure we:
         - don't book more guests than the table can hold
         - don't allow bookings outside opening hours (08:00–21:00)
+        - don't allow bookings on dates in the past
         """
         errors = {}
 
@@ -125,6 +127,15 @@ class Booking(models.Model):
                 f"Table {self.table.name} can only seat "
                 f"{self.table.capacity} guests."
             )
+
+        # Date in the past check
+        if self.date:
+            today = timezone.localdate()
+            if self.date < today:
+                errors["date"] = (
+                    "You cannot book a table in the past. "
+                    "Please choose today or a future date."
+                )
 
         # Opening hours check
         if self.time:
