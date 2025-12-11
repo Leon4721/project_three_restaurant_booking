@@ -1,18 +1,49 @@
+/* ===============================
+   Café Central – Global Styles
+   Palette: browns & beiges
+   =============================== */
+
 :root {
-    --primary-blue: #2c5aa0;
-    --hover-brown: #8b4513;
-}
-.btn-primary { background-color: var(--primary-blue); }
-.btn-primary:hover { background-color: var(--hover-brown); }
-body {
-    background: #f6f2ec;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    color: #2b2b2b;
+    --coffee-bg: #f6f2ec;
+    --coffee-cream: #fdf7ee;
+    --coffee-card: #ffffff;
+    --coffee-border: #d2bfa6;
+    --coffee-brown: #7a4b17;
+    --coffee-brown-dark: #5f380f;
+    --coffee-accent: #c58b4f;
+    --coffee-text: #2b2b2b;
+    --coffee-muted: #8b7b6a;
 }
 
-/* Hero Section */
+/* Global body style */
+body {
+    background: var(--coffee-bg);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--coffee-text);
+    line-height: 1.6;
+}
+
+/* Basic typography tweaks */
+h1, h2, h3, h4 {
+    color: #2b1b12;
+    font-weight: 700;
+}
+
+p, label, small {
+    color: var(--coffee-text);
+}
+
+/* ===============================
+   Hero Section
+   =============================== */
+
 .coffee-hero {
-    background: radial-gradient(circle at top left, #f2e6d9 0%, #e0c9a6 35%, #c4975a 100%);
+    background: radial-gradient(
+        circle at top left,
+        #f6e9da 0%,
+        #e6cfac 35%,
+        #c4975a 100%
+    );
     border-radius: 1.5rem;
     padding: 2.5rem;
     margin-bottom: 2rem;
@@ -34,79 +65,104 @@ body {
     letter-spacing: 0.08em;
 }
 
-/* Booking & menu cards */
+/* ===============================
+   Cards – Booking & Menu
+   =============================== */
+
 .booking-card,
 .menu-card {
     border-radius: 1rem;
-    border: none;
-    background: #ffffff;
-    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--coffee-border);
+    background: var(--coffee-card);
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.06);
 }
 
-/* ========================================================= */
-/* BUTTON STYLE — FINAL VERSION                              */
-/* ========================================================= */
-
-/* BUTTON STYLE — FINAL VERSION */
-
-/* Default (blue background, black text) */
-/* Target ALL primary buttons on your site */
-.btn-primary,
-button[type="submit"],
-a.btn {
-    background-color: #2c5aa0 !important; /* Primary blue */
-    border-color: #2c5aa0 !important;
-    color: white !important;
-    transition: all 0.3s ease-in-out;
+/* Slightly warmer background inside cards */
+.booking-card {
+    background: var(--coffee-cream);
 }
 
-/* Hover effect for ALL buttons */
-.btn-primary:hover,
-button[type="submit"]:hover,
-a.btn:hover {
-    background-color: #8b4513 !important; /* Coffee brown */
-    border-color: #8b4513 !important;
-    color: white !important;
-    transform: translateY(-2px); /* Slight lift effect */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+/* ===============================
+   Buttons – Coffee Primary
+   =============================== */
+
+/* Default: light beige with dark text */
+.btn-coffee-primary {
+    background: #f3ddbc !important;            /* beige */
+    border-color: #e0c29a !important;
+    color: #20150e !important;                 /* dark text */
+    font-weight: 600;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1rem;
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
-/* For Cancel/Delete buttons (optional - keep them distinct) */
-.btn-danger {
-    background-color: #dc3545 !important; /* Keep red for destructive actions */
-    border-color: #dc3545 !important;
+/* Hover: rich brown with white text */
+.btn-coffee-primary:hover,
+.btn-coffee-primary:focus,
+.btn-coffee-primary:active {
+    background: var(--coffee-brown) !important;
+    border-color: var(--coffee-brown-dark) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 0 0.15rem rgba(122, 75, 23, 0.3);
 }
 
-.btn-danger:hover {
-    background-color: #a71e2d !important; /* Darker red on hover */
-    border-color: #a71e2d !important;
+/* Remove ugly default outline */
+.btn-coffee-primary:focus-visible {
+    outline: none;
 }
 
-/* ========================================================= */
+/* ===============================
+   Alerts (Messages)
+   =============================== */
 
-/* Alerts (Booking confirmation messages) */
-.alert-success {
-    border-left: 6px solid #7a4b17 !important;
-    background: #ffffff !important;
-    color: #2b2b2b !important;
+.alert-success,
+.alert-info,
+.alert-warning,
+.alert-danger {
+    border-radius: 0.75rem;
+    border-left: 6px solid var(--coffee-brown) !important;
+    background: #fffaf2 !important;
+    color: var(--coffee-text) !important;
     font-weight: 500;
 }
 
-/* Input fields — premium styling */
-input, select, textarea {
+/* ===============================
+   Form Inputs
+   =============================== */
+
+input,
+select,
+textarea {
     background-color: #ffffff !important;
-    color: #2b2b2b !important;
-    border: 1px solid #ccc !important;
+    color: var(--coffee-text) !important;
+    border: 1px solid var(--coffee-border) !important;
     border-radius: 0.4rem !important;
-    padding: 0.55rem !important;
+    padding: 0.55rem 0.7rem !important;
+    font-size: 0.95rem;
 }
 
-input:focus, select:focus, textarea:focus {
-    border-color: #7a4b17 !important;
+input::placeholder,
+textarea::placeholder {
+    color: #b0a393;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--coffee-brown) !important;
     box-shadow: 0 0 0 0.15rem rgba(122, 75, 23, 0.25) !important;
+    outline: none;
 }
 
-/* Menu items list */
+/* ===============================
+   Menu items list
+   =============================== */
+
 .menu-item-name {
     font-weight: 600;
     font-size: 1rem;
@@ -114,38 +170,57 @@ input:focus, select:focus, textarea:focus {
 
 .menu-price {
     font-weight: 700;
-    color: #7a4b17;
+    color: var(--coffee-brown);
     font-size: 1rem;
 }
 
-/* Footer */
+/* ===============================
+   Navbar polish
+   =============================== */
+
+/* Your base.html already sets background-color inline;
+   this just refines text colours and hover. */
+
+.navbar-dark .navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #f6e3c7;
+    font-weight: 500;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link.active {
+    color: #ffe9c4;
+    text-decoration: none;
+}
+
+/* ===============================
+   Footer
+   =============================== */
+
 footer {
     font-size: 0.8rem;
-    color: #8b7b6a;
+    color: var(--coffee-muted);
     margin-top: 2rem;
     padding-bottom: 1.5rem;
 }
-.nav-hero {
-  /* Background image behind the nav content */
-  background-image: url("./images/header-bg.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 
-  /* Ensures it's tall enough to show the image nicely */
-  min-height: 80px;
+/* ===============================
+   Utility tweaks
+   =============================== */
 
-  /* So Bootstrap still treats it as a dark nav */
-  /* (text colours come from .navbar-dark) */
-}
+/* Make cards breathe a bit on mobile */
+@media (max-width: 576px) {
+    .coffee-hero {
+        padding: 1.75rem;
+    }
 
-/* Improve readability of text on top of image */
-.nav-hero .navbar-brand,
-.nav-hero .nav-link {
-  color: #ffffff;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
-}
-
-.nav-hero .nav-link:hover {
-  color: #f8f8f8;
+    .booking-card,
+    .menu-card {
+        padding: 1.5rem !important;
+    }
 }
