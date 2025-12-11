@@ -41,11 +41,11 @@
 <body>
 
 <!-- MAIN CAFÉ NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3a2615;">
+<nav class="navbar navbar-expand-lg navbar-dark nav-hero">
   <div class="container">
-    <a class="navbar-brand" href="/">Café Central</a>
+    <a class="navbar-brand" href="{% url 'home' %}">Café Central</a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -53,24 +53,26 @@
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
-          <a class="nav-link" href="/">Book a Table</a>
+          <a class="nav-link" href="{% url 'home' %}">Book a Table</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/manage/">Manage Booking</a>
+          <a class="nav-link" href="{% url 'manage_booking' %}">Manage Booking</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/cancel/">Cancel Booking</a>
+          <a class="nav-link" href="{% url 'cancel_booking' %}">Cancel Booking</a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link" href="{% url 'admin:index' %}">Staff Login</a>
         </li>
+
       </ul>
     </div>
   </div>
 </nav>
+
 <!-- END NAVBAR -->
 
 <div class="container my-4">
