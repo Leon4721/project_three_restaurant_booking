@@ -6,9 +6,8 @@ from django.core.exceptions import ValidationError
 import uuid
 
 
-# Opening hours constants
-OPENING_TIME = dt_time(8, 0)   # 08:00
-CLOSING_TIME = dt_time(21, 0)  # 21:00
+OPENING_TIME = dt_time(8, 0)   
+CLOSING_TIME = dt_time(21, 0)  
 
 
 class Table(models.Model):
@@ -121,14 +120,14 @@ class Booking(models.Model):
         """
         errors = {}
 
-        # Capacity check
+      
         if self.table and self.guests and self.guests > self.table.capacity:
             errors["guests"] = (
                 f"Table {self.table.name} can only seat "
                 f"{self.table.capacity} guests."
             )
 
-        # Date in the past check
+      
         if self.date:
             today = timezone.localdate()
             if self.date < today:
@@ -137,7 +136,7 @@ class Booking(models.Model):
                     "Please choose today or a future date."
                 )
 
-        # Opening hours check
+        
         if self.time:
             if not (OPENING_TIME <= self.time <= CLOSING_TIME):
                 errors["time"] = (

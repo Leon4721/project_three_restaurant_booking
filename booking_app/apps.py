@@ -19,11 +19,11 @@ class BookingAppConfig(AppConfig):
         try:
             from .models import Table, MenuItem
         except Exception:
-            # Models not ready (e.g. during some migration operations)
+           
             return
 
         try:
-            # Create default tables
+           
             if not Table.objects.exists():
                 default_tables = [
                     ("Window Table", 2),
@@ -34,7 +34,7 @@ class BookingAppConfig(AppConfig):
                 for name, capacity in default_tables:
                     Table.objects.create(name=name, capacity=capacity)
 
-            # Create default menu items
+          
             if not MenuItem.objects.exists():
                 default_menu = [
                     (
