@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Custom Café Styling -->
-    <link rel="stylesheet" href="{% static 'booking_app/style.css' %}">
+  <link rel="stylesheet" href="{% static 'booking_app/style.css?v=3' %}">
+
 
     <!-- Bootstrap 5 -->
     <link
@@ -40,6 +41,9 @@
           <a class="nav-link" href="/cancel/">Cancel Booking</a>
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'admin:index' %}">Staff Login</a>
+        </li>
       </ul>
     </div>
   </div>
