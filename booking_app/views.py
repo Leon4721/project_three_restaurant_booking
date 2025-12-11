@@ -139,3 +139,6 @@ def booking_detail(request, booking_code):
 def booking_confirmation(request, code):
     booking = Booking.objects.get(booking_code=code)
     return render(request, 'booking_app/confirmation.html', {'booking': booking})
+
+def staff_login(request):
+    return render(request, "booking_app/login.html")

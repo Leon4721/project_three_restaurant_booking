@@ -18,5 +18,5 @@ urlpatterns = [
     # Booking confirmation page
     # If your booking_code is a UUIDField, uuid is fine here
    path('confirmed/<str:code>/', views.booking_confirmation, name='booking_confirmation'),
-
+   path('staff-login/', views.staff_login, name='staff_login'),
 ]
