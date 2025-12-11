@@ -24,4 +24,8 @@ urlpatterns = [
     path('confirmed/<str:code>/', views.booking_confirmation, name='booking_confirmation'),
     path('admin/', admin.site.urls),
     path('', include('booking_app.urls')),
+    path('', views.home, name='home'),
+    path('manage/', views.manage_booking, name='manage_booking'),
+    path('cancel/', views.cancel_booking, name='cancel_booking'),
+    path('confirmed/<uuid:code>/', views.booking_confirmation, name='booking_confirmation')
 ]
