@@ -1,65 +1,53 @@
-# Café Central – Restaurant Booking System
+````markdown
+# Café Central
 
-Café Central is a full-stack restaurant booking application built with Django and Python. Guests can create, edit, and cancel table reservations using a unique booking code, while staff can manage bookings securely via the Django admin and a staff login route.
-
-The project demonstrates full CRUD functionality, relational database design, form validation, and deployment to a live server.
-
----
+Café Central is a full-stack restaurant booking platform built with Django and Python where users can book tables online without calling the restaurant. The application features date/time-based bookings, table capacity management, edit/cancel flows via booking codes, and secure staff/admin access.
 
 ## Live Project
 
-* **Live Site:** [https://project-three-restaurant-booking.onrender.com/](https://project-three-restaurant-booking.onrender.com/)
-
+`https://project-three-restaurant-booking.onrender.com/`
 
 ---
 
 ## Contents
 
-* [Project Rationale](#project-rationale)
-* [Project Goals](#project-goals)
-
-  * [User Goals](#user-goals)
-  * [Site Owner Goals](#site-owner-goals)
-  * [Development Goals](#development-goals)
-* [User Experience (UX)](#user-experience-ux)
-
-  * [Target Audience](#target-audience)
-  * [User Stories](#user-stories)
-* [Design](#design)
-
-  * [Wireframes](#wireframes)
-  * [Color Scheme](#color-scheme)
-  * [Typography](#typography)
-  * [UX Design Principles](#ux-design-principles)
-* [Features](#features)
-
-  * [Existing Features](#existing-features)
-  * [Future Enhancements](#future-enhancements)
-* [Database Design](#database-design)
-
-  * [Data Schema](#data-schema)
-  * [Entity Relationship Diagram](#entity-relationship-diagram)
-  * [Data Models](#data-models)
-* [Technologies Used](#technologies-used)
-
-  * [Languages](#languages)
-  * [Frameworks and Libraries](#frameworks-and-libraries)
-  * [Database](#database)
-  * [Tools](#tools)
-* [Testing](#testing)
-
-  * [Manual Testing](#manual-testing)
-  * [Code Validation](#code-validation)
-  * [Responsive Testing](#responsive-testing)
-  * [Accessibility Testing](#accessibility-testing)
-  * [Bug Tracking](#bug-tracking)
-* [Deployment](#deployment)
-
-  * [Local Development](#local-development)
-  * [Render Deployment](#render-deployment)
-  * [Environment Variables](#environment-variables)
-* [Security Features](#security-features)
-* [Credits](#credits)
+- [Project Rationale](#project-rationale)  
+- [Project Goals](#project-goals)  
+  - [User Goals](#user-goals)  
+  - [Site Owner Goals](#site-owner-goals)  
+  - [Development Goals](#development-goals)  
+- [User Experience (UX)](#user-experience-ux)  
+  - [Target Audience](#target-audience)  
+  - [User Stories](#user-stories)  
+  - [Design](#design)  
+    - [Wireframes](#wireframes)  
+    - [Color Scheme](#color-scheme)  
+    - [Typography](#typography)  
+    - [UX Design Principles](#ux-design-principles)  
+- [Features](#features)  
+  - [Existing Features](#existing-features)  
+  - [Future Enhancements](#future-enhancements)  
+- [Database Design](#database-design)  
+  - [Data Schema](#data-schema)  
+  - [Entity Relationship Diagram](#entity-relationship-diagram)  
+  - [Data Models](#data-models)  
+- [Technologies Used](#technologies-used)  
+  - [Languages](#languages)  
+  - [Frameworks and Libraries](#frameworks-and-libraries)  
+  - [Database](#database)  
+  - [Tools](#tools)  
+- [Testing](#testing)  
+  - [Manual Testing](#manual-testing)  
+  - [Code Validation](#code-validation)  
+  - [Responsive Testing](#responsive-testing)  
+  - [Accessibility Testing](#accessibility-testing)  
+  - [Bug Tracking](#bug-tracking)  
+- [Deployment](#deployment)  
+  - [Local Development](#local-development)  
+  - [Render Deployment](#render-deployment)  
+  - [Environment Variables](#environment-variables)  
+- [Security Features](#security-features)  
+- [Credits](#credits)  
 
 ---
 
@@ -69,41 +57,37 @@ The project demonstrates full CRUD functionality, relational database design, fo
 
 Many small restaurants still rely on phone calls, paper diaries, or basic spreadsheets to manage reservations. This makes it easy to:
 
-* Double-book tables
-* Lose bookings completely
-* Allow customers to book at times the restaurant is closed
-* Offer a poor user experience where customers have to call during specific hours
+- Double-book tables because there is no automatic clash detection  
+- Lose bookings when notes are misread, deleted, or written in the wrong place  
+- Allow customers to book at times when the restaurant is closed  
+- Offer a poor user experience where customers must call during specific hours and wait on hold  
 
-### The Problem
+For diners who are used to booking everything online, this feels outdated and frustrating. For staff, manual systems are error-prone, time-consuming, and difficult to audit.
 
-* Customers expect **online self-service bookings** that work 24/7.
-* Owners need to **avoid double bookings** and respect table capacities.
-* Staff need a quick way to **find, edit, or cancel reservations** when customers call.
-* Manual systems are error-prone and time-consuming.
+**The Problem**
 
-### The Solution
+- Customers expect **online self-service bookings** that work 24/7 and on mobile.  
+- Owners need to **avoid double bookings** and respect table capacities.  
+- Staff need a quick way to **find, edit, or cancel reservations** when customers call.  
+- Manual systems are **fragile** (paper diaries, loose notes, spreadsheets) and hard to keep in sync.  
+
+**The Solution**
 
 Café Central provides a simple, mobile-friendly booking flow where users can:
 
-* Select a **date, time, party size and table type**
-* Receive a **unique booking code** on confirmation
-* Use that code to **view, edit, or cancel** their booking
-* Be prevented from booking **in the past** or exceeding table capacity
+- Select a **date, time, party size and table type** (window, central floor, corner booth, outside)  
+- Receive a **unique booking code** on confirmation  
+- Use that code to **view, edit, or cancel** their booking  
+- Be prevented from booking **in the past**, outside opening hours, or beyond table capacity  
 
 Meanwhile, the site owner can:
 
-* View all bookings in the **Django admin**
-* Filter by date/time and manage capacity
-* Ensure bookings are stored in a **relational database** with referential integrity
+- View all bookings in the **Django admin**, ordered by date/time  
+- Filter by date, time, and table to manage capacity  
+- Rely on bookings being stored in a **relational database** with a clear `Table → Booking` relationship  
+- Enforce business rules (opening hours, capacity, unique booking codes) via server-side validation  
 
-### Educational Context
-
-This project was developed as part of the **Level 5 Diploma in Web Application Development (Unit 3: Back End Development)** and demonstrates:
-
-* Django models and relational database design
-* CRUD operations and form validation
-* Secure staff authentication and admin access
-* Professional deployment to a live environment (Render)
+This project was developed as part of the **Level 5 Diploma in Web Application Development (Unit 3: Back End Development)** and demonstrates Django models, relational databases, CRUD functionality, authentication, and professional deployment on Render.
 
 [↑ Back to Top](#contents)
 
@@ -115,36 +99,36 @@ This project was developed as part of the **Level 5 Diploma in Web Application D
 
 Users want to:
 
-* Quickly reserve a table online without calling the restaurant
-* Choose a **suitable time, date, and party size**
-* See immediate feedback when their booking is confirmed
-* Receive a **clear booking code** they can use later
-* Edit or cancel their booking if plans change
-* Feel confident that **their data is handled securely**
+- Book a table online quickly without phoning the restaurant  
+- Choose a **suitable time, date, party size and table type**  
+- Get **immediate confirmation** that their booking is saved  
+- Receive a **clear booking code** they can copy, save, or screenshot  
+- Return later to **edit or cancel** their booking using that code  
+- Trust that their data is handled securely and not exposed to other users  
 
 ### Site Owner Goals
 
-The site owner wants to:
+As the site owner, I want to:
 
-* **Automate bookings** to reduce phone calls and manual diary entries
-* Avoid **double bookings** and over-capacity tables
-* Keep all bookings in a **consistent, queryable database**
-* Allow staff to **look up and edit bookings** quickly
-* Demonstrate back-end development skills using **Django and relational databases**
-* Present a professional, responsive, and accessible interface
+- **Automate bookings** to reduce phone calls and manual diary entries  
+- Avoid **double bookings** and over-capacity tables  
+- Keep bookings in a **structured relational database** that I can query and manage  
+- Give staff the ability to **look up, edit, or cancel bookings** quickly via booking code  
+- Demonstrate back-end development skills with **Django, models, forms, and validation**  
+- Present a professional, responsive, and accessible site that would be realistic for a small restaurant  
 
 ### Development Goals
 
 This project aims to demonstrate:
 
-* ✅ Full-stack Django application with templates, views, and models
-* ✅ **Relational database** design with at least one **ForeignKey relationship**
-* ✅ Complete **CRUD**: create, read, update, delete bookings
-* ✅ Secure **staff login** using Django’s authentication
-* ✅ Robust **form validation** (e.g. no bookings in the past)
-* ✅ Clear **user flows** with success and error messages
-* ✅ **Live deployment** with environment variables and debug off in production
-* ✅ Code structured in a way that is maintainable and clearly documented
+- ✅ Full-stack Django application using views, templates, models and URL routing  
+- ✅ **Relational data modeling** with `ForeignKey` relationships (e.g. `Booking → Table`)  
+- ✅ Complete **CRUD** (create, read, update, delete) for bookings  
+- ✅ Staff/admin access using Django’s **authentication and admin site**  
+- ✅ Robust **form validation** (no past bookings, respect opening hours, enforce capacity)  
+- ✅ Clear user flows using Django’s **messages framework** for success and error states  
+- ✅ **Live deployment** to Render with environment variables and `DEBUG=False` in production  
+- ✅ Code structured to be maintainable, readable and clearly documented in the README  
 
 [↑ Back to Top](#contents)
 
@@ -156,140 +140,122 @@ This project aims to demonstrate:
 
 **Primary audience**
 
-* Diners aged 18–65 looking to reserve a restaurant table
-* Users who expect a simple, no-account booking experience
-* Mobile-first users who book on the go
+- Diners aged 18–65 who want to reserve a restaurant table  
+- Users who prefer a **no-account** booking (just fill in the form and go)  
+- Mobile-first users who expect to book in under a minute from their phone  
 
 **Secondary audience**
 
-* Restaurant staff who need to look up, modify or cancel bookings
-* Course assessors reviewing the project for Unit 3 (Back End)
-
-### User Needs
-
-The target audience needs:
-
-* **Fast booking** with minimal required fields
-* **Responsive design** that works on phones, tablets, and desktops
-* Clear **confirmation and booking code**
-* Ability to **change or cancel** a booking
-* Clear error messaging if something goes wrong
+- Restaurant staff who need to look up, modify, or cancel bookings while on the phone  
+- Tutors and assessors marking Project 3 (Back End) and checking UX, data models and deployment  
 
 ### User Stories
 
-**First-Time Visitor**
+**First-time Visitor**
 
-* As a first-time visitor, I want to understand immediately that this site is for **booking a table**.
-* As a first-time visitor, I want to **submit a booking form quickly** without creating an account.
-* As a first-time visitor, I want to be told clearly if there are **errors in my form inputs**.
-* As a first-time visitor, I want to see a **clear confirmation** that my booking has been saved and a **booking code** I can keep.
+- As a first-time visitor, I want to quickly understand that this site is for **booking a table**.  
+- As a first-time visitor, I want to **submit a booking form** without creating an account.  
+- As a first-time visitor, I want to see clear **error messages** if any fields are invalid.  
+- As a first-time visitor, I want a **confirmation message and booking code** when my booking is saved.  
 
 **Returning User**
 
-* As a returning user, I want to **find my booking using a booking code** so I don’t have to remember all my details.
-* As a returning user, I want to **edit my booking** (date/time/party size) if my plans change.
-* As a returning user, I want to **cancel my booking** easily if I can’t attend.
+- As a returning user, I want to **find my booking using a booking code** so I don’t have to re-enter all details.  
+- As a returning user, I want to **edit my booking** (date, time, guests, table type) if plans change.  
+- As a returning user, I want to **cancel my booking** easily if I can’t attend, and see confirmation it worked.  
 
 **Site Administrator / Staff**
 
-* As staff, I want to **log in securely** and access the Django admin.
-* As staff, I want to **view a list of all bookings** ordered by date/time.
-* As staff, I want to see **table capacity and party size** to ensure no over-bookings.
-* As staff, I want to be able to **edit or delete bookings** on behalf of customers.
+- As staff, I want to **log in securely** and access the Django admin.  
+- As staff, I want to **view upcoming bookings ordered by date/time**.  
+- As staff, I want to see **table location and capacity** alongside party size to check over-bookings.  
+- As staff, I want to **edit or delete bookings** on behalf of customers when they call.  
 
-[↑ Back to Top](#contents)
+### Design
 
----
+#### Wireframes
 
-## Design
+Wireframes were created in **Balsamiq** using a **mobile-first** approach:
 
-### Wireframes
+- **Mobile (320–767px)**  
+  - Single column layout  
+  - Booking form stacked vertically with large touch-friendly controls  
+  - “Manage booking” section positioned below the main booking form  
+  - Success/error messages displayed as banners near the top  
 
-Wireframes were created using **Balsamiq** following a **mobile-first** approach.
+- **Tablet (768–1023px)**  
+  - Where space allows, a two-column layout:  
+    - Booking form on the left  
+    - Hero text/illustration or booking info on the right  
+  - Increased spacing and padding for readability  
 
-**Mobile (320–767px)**
+- **Desktop (1024px+)**  
+  - Centered booking “card” with supporting hero section  
+  - Consistent header/footer  
+  - Plenty of white space around the main content  
 
-* Single-column layout
-* Booking form stacked vertically with large touch targets
-* “Manage booking” section positioned below the main form
-* Clear success and error alerts using bootstrap-style banners
+Wireframe screenshots for mobile, tablet and desktop are stored in the project’s `docs/` folder and referenced during testing.
 
-**Tablet (768–1023px)**
+#### Color Scheme
 
-* Two-column layout: booking form on the left, booking information / hero text on the right
-* Larger inputs and more breathing space
+Café Central uses a warm, restaurant-inspired palette:
 
-**Desktop (1024px+)**
+- Deep coffee-style tones for headers and primary accents  
+- Light neutral backgrounds for main content areas  
+- A contrasting accent colour (e.g. warm gold/amber) for buttons and key CTAs  
 
-* Centered booking card with hero section
-* Consistent navigation and footer
-* Enough white space to keep the layout clean and readable
+The palette was chosen to:
 
-> Wireframe screenshots (mobile / tablet / desktop) are included in the `/docs` folder and referenced in the Testing/README where appropriate.
+- Reflect a cosy café/restaurant atmosphere  
+- Maintain good contrast between text and background  
+- Keep the interface clean and professional for assessment  
 
-### Color Scheme
+#### Typography
 
-Café Central uses a clean, modern palette suitable for a restaurant brand:
-
-| Role             | Colour (HEX) | Usage                             |
-| ---------------- | ------------ | --------------------------------- |
-| Primary          | `#8B4513`    | Buttons, accents, headings        |
-| Secondary        | `#F5DEB3`    | Background highlights, hero areas |
-| Dark Text        | `#222222`    | Main text                         |
-| Light Background | `#FFFFFF`    | Card backgrounds, forms           |
-| Alert Success    | `#198754`    | Success messages                  |
-| Alert Danger     | `#DC3545`    | Error / validation messages       |
-
-Colours were chosen to:
-
-* Suggest warmth and coffee/restaurant tones
-* Maintain adequate contrast for readability
-* Keep the UI simple and professional for assessment
-
-### Typography
-
-A system font stack is used for performance and familiarity:
+A performant system font stack is used:
 
 ```css
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
              "Helvetica Neue", Arial, sans-serif;
-```
+````
 
-* **Headings:** Bold / semi-bold
-* **Body text:** Regular 16px minimum
-* **Buttons & Labels:** Semi-bold for emphasis
+* Headings: bold/semi-bold for clear hierarchy
+* Body text: minimum 16px for readability
+* Buttons & labels: semi-bold to make actions easy to scan
 
-Line height of **1.4–1.6** is used to keep text legible on all screen sizes.
+Line height between **1.4–1.6** is used to keep content readable without feeling cramped.
 
-### UX Design Principles
+#### UX Design Principles
 
-The design follows key UX principles:
+Key UX principles applied:
 
 1. **Clarity**
 
-   * Single primary action on the home page: **book a table**.
-   * Manage booking, edit and cancel flows are clearly labelled.
+   * Single dominant action on the home page: **book a table**.
+   * “Manage booking”, “Edit booking” and “Cancel booking” are clearly labelled.
 
 2. **Feedback**
 
-   * Success and error messages displayed using Bootstrap-style alerts.
-   * Invalid fields are highlighted with helpful messages.
+   * Django messages show confirmation and error alerts after form submissions.
+   * Field-level errors appear next to invalid inputs.
 
 3. **Consistency**
 
-   * Form layout is consistent across create, edit, and manage views.
-   * Buttons share common styling (colour, hover states).
+   * Form layouts for create and edit bookings follow the same structure.
+   * Buttons share a consistent style and hover behaviour.
+   * Terminology (e.g. “booking code”) is used consistently across the site.
 
 4. **Accessibility**
 
-   * Labels associated with all form inputs.
-   * Colour contrast considered for text and buttons.
-   * Logical heading order and semantic HTML where possible.
+   * Form inputs are associated with labels.
+   * Headings follow a logical hierarchy.
+   * Colour contrast is checked to meet accessibility guidelines.
+   * Forms are usable with a keyboard.
 
 5. **Mobile-First**
 
-   * Layout is designed to work on small screens first.
-   * Larger screens enhance spacing and layout but do not change the core flow.
+   * Layout designed first for mobile, then enhanced for larger screens.
+   * No essential functionality is hidden on small devices.
 
 [↑ Back to Top](#contents)
 
@@ -299,10 +265,9 @@ The design follows key UX principles:
 
 ### Existing Features
 
-1. **Home Page – Make a Booking**
+1. **Home Page – Create a Booking**
 
-   * Single, intuitive form to create a booking.
-   * Fields typically include:
+   * Single intuitive form to create a booking with:
 
      * Name
      * Email
@@ -310,84 +275,82 @@ The design follows key UX principles:
      * Date
      * Time
      * Number of guests
-     * Table type / location (e.g. window, booth, main floor)
+     * Table type / location (Window, Central floor, Corner booth, Outside)
    * Server-side validation ensures:
 
-     * All required fields are completed
-     * Guests do not exceed the maximum capacity
-     * **Dates in the past cannot be booked**
+     * Required fields are completed
+     * Guests do not exceed the selected table’s capacity
+     * Dates **cannot be in the past**
+     * Times fall within opening hours (e.g. 08:00–21:00 via `OPENING_TIME` / `CLOSING_TIME`)
 
 2. **Unique Booking Code Generation**
 
-   * Each booking is assigned a **unique booking code** (UUID).
+   * Each booking gets a **unique booking code** (`UUIDField`).
    * On successful submission:
 
-     * A success message is shown
-     * The booking code is clearly displayed to the user
-   * This code is used later to **manage, edit, or cancel** the booking.
+     * A success message is displayed using Django messages
+     * The booking code is shown in the message so users can save it
+   * The booking code is then used for manage/edit/cancel flows instead of exposing database IDs.
 
-3. **Manage Booking**
+3. **Manage Booking Flow**
 
-   * Dedicated “Manage booking” section or page.
-   * Users can enter their **booking code** (and optionally email) to retrieve their booking.
-   * If the code is valid:
-
-     * Booking details are displayed
-     * Links/buttons are provided to **edit** or **cancel** the booking
+   * Dedicated “Manage booking” page accessed from the home page.
+   * Users enter their **booking code** to look up an existing booking.
+   * If the code is valid, the user sees key details (date, time, guests, table type) plus options to **edit** or **cancel**.
+   * If the code is invalid, a clear error message is displayed and the form remains on screen.
 
 4. **Edit Booking**
 
-   * Users can update:
-
-     * Date
-     * Time
-     * Number of guests
-     * Table choice
-   * The same validation rules apply:
+   * Users can update: date, time, number of guests, and table choice.
+   * The same business rules are applied on edit:
 
      * No past dates
-     * Capacity limits respected
-   * On success, a confirmation message is displayed and the user can see the updated booking.
+     * Respect table capacity
+     * Respect opening hours
+   * If the booking doesn’t exist, the view uses `get_object_or_404` to return a proper 404 page.
+   * On successful edit, the user receives a confirmation message and can review the updated booking.
 
 5. **Cancel Booking**
 
-   * Users can cancel their booking from the manage view.
-   * Confirmation flow prevents accidental cancellations.
-   * Canceled bookings are removed (or flagged) in the database.
+   * From the manage view, users can cancel their booking.
+   * A simple confirmation step avoids accidental cancellations.
+   * The booking is then deleted or marked as cancelled in the database, and a confirmation message is shown.
 
 6. **Staff Login and Django Admin**
 
-   * A **staff login link** enables staff to sign in with Django authentication.
-   * Staff users (with `is_staff=True`) can access the **Django admin panel** to:
+   * A dedicated **staff login** route (e.g. `/staff-login/`) points staff to Django’s authentication.
+   * Staff with `is_staff=True` can access the Django admin and:
 
-     * View all bookings
-     * Filter by date/time/table
-     * Edit or delete bookings as needed
-   * Only authenticated staff can access the admin area.
+     * View all bookings in a list, ordered by date/time
+     * Filter bookings by date, table, or other fields
+     * Create, edit, or delete bookings as needed
+   * Non-authenticated users trying to access `/admin/` are redirected to the login page.
 
 7. **Validation and Error Handling**
 
-   * Form errors are displayed near the relevant fields.
-   * Global error messages appear for invalid booking codes or missing records.
-   * Server-side validation prevents bypassing rules such as:
+   * Server-side validation ensures that:
 
-     * Booking dates in the past
-     * Exceeding table capacity
+     * Past dates are rejected
+     * Guest count does not exceed capacity
+     * Booking codes are either resolved to a record or produce a safe error message
+   * Errors are shown at field level and as top-of-page alerts where appropriate.
 
 8. **Responsive Layout**
 
-   * Uses a responsive layout (Bootstrap-style grid and utility classes).
-   * Tested on multiple screen sizes to avoid horizontal scrolling.
+   * Layout built with a responsive grid (Bootstrap-style classes).
+   * Tested on multiple screen sizes so no horizontal scrolling occurs.
+   * Buttons and inputs are large enough for comfortable use on mobile.
 
 ### Future Enhancements
 
-Planned improvements that could move the project further towards Distinction level:
+Potential improvements for a higher distinction-level project:
 
-* **Email Confirmation:** Send a confirmation email with booking details and code.
-* **User Accounts (Optional):** Allow frequent diners to register and see a history of their bookings.
-* **Table View for Staff:** Custom staff dashboard showing tables and times in a visual grid.
-* **Holiday / Closed Dates:** Prevent bookings on days when the restaurant is closed.
-* **Automated Tests:** Django TestCase classes to cover models, forms, and views.
+* **Email confirmations** – Send automatic emails with booking details and booking code.
+* **User accounts** – Optional user registration to see booking history and manage multiple bookings.
+* **Custom staff dashboard** – A visual table/time grid to show occupancy at a glance instead of only list view.
+* **Closed/holiday dates** – Block booking on specific days (Christmas, private events, etc.).
+* **Automated tests** – Add Django `TestCase` classes for models, forms, and views.
+* **More advanced capacity logic** – E.g. combining tables or preventing overlapping bookings for the same table/time slot.
 
 [↑ Back to Top](#contents)
 
@@ -397,67 +360,74 @@ Planned improvements that could move the project further towards Distinction lev
 
 ### Data Schema
 
-Café Central uses a **relational database** with clearly defined relationships between entities. This meets the requirement for relational data rather than a single flat table.
+Café Central uses a **relational database** with a clear one-to-many relationship between tables and bookings:
+
+* A **Table** represents a physical table in the restaurant (e.g. Window 1, Booth A).
+* A **Booking** represents a reservation made by a customer for a specific table, date and time.
+
+This schema supports capacity checks, avoids repeated data, and meets Unit 3 requirements for relational data.
 
 ### Entity Relationship Diagram
 
-Core entities:
+**Entities:**
 
-* **Table** – physical table in the restaurant
-* **Booking** – reservation made by a customer
+* `Table`
+* `Booking`
 
-Relationships:
+**Relationships:**
 
-* **Table → Booking (One-to-Many):**
+* **Table → Booking** (1-to-Many):
 
-  * One table can have many bookings over time
-  * Each booking is linked to exactly one table
+  * One `Table` can have many `Booking` records over time.
+  * Each `Booking` is linked to exactly one `Table` via a `ForeignKey`.
+
+This design allows queries like “all bookings for a given table on a given date” and enables strong validation around capacities.
 
 ### Data Models
 
-> **Note:** Field names shown here reflect the conceptual design. The actual implementation may use slightly different names or types but follows the same structure.
-
 #### Table Model
 
-Represents each physical table in the restaurant.
+Represents physical tables.
+
+Key fields:
 
 * `id` – Primary key
-* `name` – Human-readable label (e.g. “Window 1”, “Booth A”)
-* `capacity` – Maximum number of guests for the table
-* `location` – Choice field (e.g. WINDOW, BOOTH, MAIN_FLOOR)
-* `is_active` – Boolean to allow disabling a table without deleting it
+* `name` – Human-readable name (e.g. “Window 1”, “Booth A”)
+* `capacity` – Maximum number of guests for this table
+* `location` – Choice field (e.g. `WINDOW`, `CENTRAL`, `CORNER`, `OUTSIDE`)
+* `is_active` – Boolean to allow temporary deactivation without deleting records
 
-**Key points:**
+Design considerations:
 
-* Normalizes repeated data (capacity, location) instead of storing as plain text on each booking.
-* Makes it easier to adjust capacity or remove tables in the future.
+* Keeping capacity and location on `Table` avoids repeating those values on every booking.
+* `is_active` allows the restaurant to take a table out of service (maintenance, distancing, etc.) while preserving historical bookings.
 
 #### Booking Model
 
-Represents a customer’s reservation.
+Represents a specific reservation.
+
+Key fields:
 
 * `id` – Primary key
-* `booking_code` – UUID, unique code given to the user
+* `booking_code` – `UUIDField` used as the public reference code
 * `customer_name` – Name of the guest
 * `email` – Contact email
-* `phone` – Contact number
-* `date` – Date of booking
-* `time` – Time of booking
-* `guests` – Number of guests
-* `table` – ForeignKey → `Table` (on_delete=PROTECT)
-* `special_requests` – Optional text field for dietary needs, celebrations, etc.
-* `created_at` – Date/time created (auto-add)
-* `updated_at` – Date/time updated (auto-now)
+* `phone` – Contact phone number
+* `date` – Date of the booking
+* `time` – Time of the booking
+* `guests` – Number of guests in the party
+* `table` – `ForeignKey` to `Table` (`on_delete=models.PROTECT`)
+* `special_requests` – Optional text field for notes (allergies, celebrations, etc.)
+* `created_at` – Auto timestamp when booking is created
+* `updated_at` – Auto timestamp when booking is last updated
 
-**Constraints & Validation:**
+Validation and constraints:
 
-* `booking_code` unique
-* `date` not allowed in the past (validated in form or model)
-* `guests` must be positive and cannot exceed `table.capacity`
-
-**Why PROTECT on delete?**
-
-* `on_delete=models.PROTECT` prevents deleting a table if bookings reference it, which protects historical booking data and integrity.
+* `booking_code` is unique.
+* `guests` must be positive and cannot exceed `table.capacity`.
+* `date` must not be in the past.
+* `time` must be within `OPENING_TIME` and `CLOSING_TIME`.
+* `on_delete=models.PROTECT` on the `table` field prevents deleting a `Table` that still has bookings, preserving integrity.
 
 [↑ Back to Top](#contents)
 
@@ -467,32 +437,31 @@ Represents a customer’s reservation.
 
 ### Languages
 
-* **Python** – Back-end logic and Django framework
-* **HTML5** – Templating and page structure
+* **Python** – Core back-end language (Django)
+* **HTML5** – Template structure
 * **CSS3** – Styling and layout
-* **JavaScript (minimal)** – Minor enhancements (if used)
+* **JavaScript** (minimal) – Progressive enhancements where needed
 
 ### Frameworks and Libraries
 
-* **Django 6** – Main web framework, ORM, templating, authentication
-* **Bootstrap 5** (or similar) – Responsive grid and UI components
-* **Gunicorn** – WSGI server for production
-* **Whitenoise** – Static files handling (if configured)
+* **Django 6** – Web framework, ORM, routing, authentication
+* **Bootstrap-style CSS** – For responsive grid and UI components
+* **Gunicorn** – WSGI HTTP server for production
 
 ### Database
 
-* **SQLite3** – Development database
-* **PostgreSQL** (typical on Render) – Production database
+* **SQLite3** – Local development database
+* **PostgreSQL** (via Render) – Production-ready relational database configured via `DATABASE_URL`
 
 ### Tools
 
-* **Visual Studio Code** – Code editor
+* **Visual Studio Code** – IDE for development
 * **Git & GitHub** – Version control and repository hosting
-* **Balsamiq** – Wireframe design
-* **Render** – Hosting platform for deployment
+* **Balsamiq** – Wireframing
+* **Render** – Hosting platform for live deployment
 * **Chrome DevTools** – Debugging and responsive testing
-* **W3C Validators** – HTML and CSS validation
-* **PEP8 / Flake8** – Python style and linting (where applied)
+* **W3C HTML/CSS Validators** – Markup and stylesheet validation
+* **flake8 / PEP8** – Python linting and style checks
 
 [↑ Back to Top](#contents)
 
@@ -500,144 +469,104 @@ Represents a customer’s reservation.
 
 ## Testing
 
-### Testing Strategy
-
-The project currently relies on **comprehensive manual testing** backed by framework-level protections (Django forms, model validation, authentication).
-
-Automated tests are considered a future enhancement.
+The project relies on **comprehensive manual testing**, backed by Django’s built-in validation and admin tooling. Automated tests are identified as a future enhancement.
 
 ### Manual Testing
 
-Below is a selection of the key manual test cases performed. (You can expand this into a full table for each page.)
-
 #### Booking Flow
 
-| Test Case                  | Steps                                     | Expected Result                                              | Status |
-| -------------------------- | ----------------------------------------- | ------------------------------------------------------------ | ------ |
-| Create booking (valid)     | Fill form with valid data and submit      | Booking created, success message shown, booking code visible | ✅      |
-| Create booking (past date) | Select yesterday’s date and submit        | Form rejected, error message shown near date field           | ✅      |
-| Missing required field     | Leave name empty and submit               | Form rejected, “This field is required” error shown          | ✅      |
-| Max capacity exceeded      | Choose table then enter guests > capacity | Form rejected, validation message about capacity             | ✅      |
+| Test Case                            | Steps                                              | Expected Result                                              | Status |
+| ------------------------------------ | -------------------------------------------------- | ------------------------------------------------------------ | ------ |
+| Create booking – valid data          | Fill in all fields correctly and submit            | Booking created, success message shown, booking code visible | ✅      |
+| Create booking – past date           | Choose yesterday’s date and submit                 | Form rejected, error near date field explaining the issue    | ✅      |
+| Create booking – outside opening hrs | Choose time before 08:00 or after 21:00 and submit | Form rejected, error about opening hours                     | ✅      |
+| Create booking – missing required    | Leave name or email blank and submit               | Form rejected, “This field is required” error shown          | ✅      |
+| Create booking – capacity exceeded   | Select a table then set guests > table capacity    | Form rejected, validation error about maximum capacity       | ✅      |
 
 #### Manage / Edit / Cancel Booking
 
-| Test Case                    | Steps                                   | Expected Result                                  | Status |
-| ---------------------------- | --------------------------------------- | ------------------------------------------------ | ------ |
-| Find booking with valid code | Enter valid booking code in manage form | Booking details displayed                        | ✅      |
-| Invalid booking code         | Enter random / non-existent code        | Error message: booking not found                 | ✅      |
-| Edit booking (valid change)  | Change time and submit                  | Updated booking shown, success message displayed | ✅      |
-| Edit booking to past date    | Edit date to earlier than today         | Validation error for date                        | ✅      |
-| Cancel booking               | Click cancel → confirm                  | Booking removed and feedback message displayed   | ✅      |
+| Test Case                          | Steps                                          | Expected Result                                         | Status |
+| ---------------------------------- | ---------------------------------------------- | ------------------------------------------------------- | ------ |
+| Find booking – valid code          | Enter a known booking code in “Manage booking” | Booking details displayed with edit/cancel options      | ✅      |
+| Find booking – invalid code        | Enter a random/non-existent code               | Friendly error message: booking not found               | ✅      |
+| Edit booking – valid update        | Change time/guests within rules and submit     | Booking updated, success message displayed              | ✅      |
+| Edit booking – invalid (past date) | Change date to a past date and submit          | Validation error for date field                         | ✅      |
+| Cancel booking                     | Click cancel on manage view and confirm        | Booking removed/flagged, confirmation message displayed | ✅      |
 
 #### Staff / Admin
 
-| Test Case              | Steps                                        | Expected Result                            | Status |
-| ---------------------- | -------------------------------------------- | ------------------------------------------ | ------ |
-| Staff login (valid)    | Use staff credentials at staff login / admin | Login successful, admin dashboard shown    | ✅      |
-| Staff login (invalid)  | Use wrong password                           | Login page re-displayed with error message | ✅      |
-| Non-staff access admin | Attempt `/admin/` as anonymous user          | Redirected to login                        | ✅      |
+| Test Case                | Steps                                 | Expected Result                                 | Status |
+| ------------------------ | ------------------------------------- | ----------------------------------------------- | ------ |
+| Staff login – valid      | Log in with a known staff account     | Access to Django admin dashboard                | ✅      |
+| Staff login – invalid    | Use incorrect password                | Login form re-shown with appropriate error      | ✅      |
+| Anonymous admin access   | Visit `/admin/` when not logged in    | Redirect to login page                          | ✅      |
+| Admin booking management | Use admin to edit or delete a booking | Changes saved and reflected in the live project | ✅      |
 
 ### Code Validation
 
-> You can run these tools and then update the summary if anything changes.
-
-* **HTML** – Checked with [W3C Markup Validation Service]; any critical errors fixed.
-* **CSS** – Checked with [W3C CSS Validator]; minor warnings (e.g. vendor prefixes) accepted.
-* **Python** – Checked with `flake8` where possible; no major PEP8 violations remaining in core files.
+* **HTML** – Checked with W3C Markup Validation; critical errors fixed. Some Django-specific attributes may generate warnings but do not affect behaviour.
+* **CSS** – Checked with W3C CSS Validator; minor warnings (e.g. vendor prefixes) accepted where non-critical.
+* **Python** – Checked with `flake8`/PEP8; obvious style issues removed from core files (`models.py`, `views.py`, etc.).
 
 ### Responsive Testing
 
-Tested using Chrome DevTools and (where possible) real devices.
+Responsive behaviour was tested using Chrome DevTools and real devices where possible:
 
-**Devices / widths tested:**
+**Devices / breakpoints tested:**
 
-* iPhone SE / small mobile (320px)
-* Standard modern mobile (375–414px)
-* iPad / tablet (768–1024px)
+* Small mobile (e.g. iPhone SE – 320px)
+* Standard mobile (375–414px)
+* Tablet (768–1024px)
 * Laptop (1366–1440px)
 * Desktop (1920px)
 
-**Verified:**
+**Checks:**
 
-* No horizontal scrolling
-* Forms usable on all screen sizes
-* Buttons and links large enough for touch interaction
+* No horizontal scrolling on key pages
+* Forms remain usable (no inputs off-screen)
+* Buttons remain tap-friendly on smaller screens
+* Messages and alerts remain visible above/beside the form content
 
 ### Accessibility Testing
 
-* Manual checks:
+* Labels associated with each form input.
+* Logical heading order (h1 → h2 → h3) across templates.
+* Colour contrast checked to meet basic accessibility requirements.
+* WAVE and/or Lighthouse audits run to identify any major issues, with obvious errors (e.g. missing alt text) corrected where applicable.
 
-  * Labels attached to inputs
-  * Headings follow a logical order
-  * Colour contrast checked with online tools
-* WAVE / Lighthouse (run via browser extensions) used to check for obvious accessibility problems and contrast issues.
+### Bug Tracking
 
-[↑ Back to Top](#contents)
+A selection of key bugs encountered and fixed during development:
 
----
+**BUG-001: 404 on manage/edit booking URLs**
 
-## Bug Tracking
-
-Below are some key issues encountered and resolved during development.
-
-### BUG-001: 404 on Manage Booking URL
-
-**Symptom:**
-Clicking a manage/edit link produced a 404 error.
-
-**Cause:**
-The URL pattern expected `edit/<str:booking_code>/` but links/forms were pointing to a different path (`manage/<code>/`).
-
-**Fix:**
-
-* Updated URL patterns in `booking_app/urls.py` to match the views.
-* Ensured all templates use `{% url 'edit_booking' booking.booking_code %}` and `{% url 'manage_booking' %}` consistently.
+* **Symptom:** Clicking certain links (e.g. after editing) produced a 404 on `/manage/<code>/`.
+* **Cause:** URL patterns expected `edit/<str:booking_code>/` and a dedicated `manage/` view, but some templates were using outdated paths.
+* **Fix:** Standardised URL configuration in `booking_app/urls.py` and updated all template links and forms to use named URLs (`manage_booking`, `edit_booking`) instead of hard-coded paths.
 
 ---
 
-### BUG-002: `get_object_or_404` NameError
+**BUG-002: `get_object_or_404` NameError**
 
-**Symptom:**
-Django error: `NameError: name 'get_object_or_404' is not defined` in the edit view.
-
-**Cause:**
-`get_object_or_404` was used in `views.py` but not imported.
-
-**Fix:**
-
-* Added `from django.shortcuts import get_object_or_404` at the top of `views.py`.
-* Retested edit flow – bookings now load correctly.
+* **Symptom:** Editing a booking raised `NameError: name 'get_object_or_404' is not defined`.
+* **Cause:** The `edit_booking` view used `get_object_or_404` without importing it.
+* **Fix:** Added `from django.shortcuts import get_object_or_404` at the top of `views.py` and retested the edit flow.
 
 ---
 
-### BUG-003: Staff Login TemplateDoesNotExist
+**BUG-003: Staff Login TemplateDoesNotExist**
 
-**Symptom:**
-Visiting `/staff-login/` raised `TemplateDoesNotExist: booking_app/login.html`.
-
-**Cause:**
-The view was pointing to `booking_app/login.html` but the template either didn’t exist or lived in the wrong folder.
-
-**Fix:**
-
-* Created `booking_app/login.html` extending `base.html`.
-* Ensured `TEMPLATES` configuration and app directories were correct.
-* Verified login page loads without error.
+* **Symptom:** Visiting `/staff-login/` produced `TemplateDoesNotExist: booking_app/login.html`.
+* **Cause:** The staff login view referenced a template that did not exist yet.
+* **Fix:** Created `booking_app/login.html` extending `base.html` and verified that the staff login form renders and posts correctly.
 
 ---
 
-### BUG-004: Users Could Book Past Dates
+**BUG-004: Users Could Book Past Dates**
 
-**Symptom:**
-Before adding validation, users could select dates in the past.
-
-**Cause:**
-Initial implementation only used HTML `min` attributes or no validation at all.
-
-**Fix:**
-
-* Added server-side validation in the form/model (e.g. custom `clean_date` method).
-* Prevented clients from bypassing validation by disabling JavaScript.
+* **Symptom:** Initially, users could choose dates in the past.
+* **Cause:** Only HTML attributes were applied; no server-side check prevented past dates.
+* **Fix:** Implemented server-side date validation (e.g. in forms or model `clean()`), blocking past dates even if JS/HTML checks are bypassed.
 
 [↑ Back to Top](#contents)
 
@@ -647,40 +576,40 @@ Initial implementation only used HTML `min` attributes or no validation at all.
 
 ### Local Development
 
-#### Prerequisites
+**Prerequisites**
 
-* Python 3.11+ (or 3.13 as used on Render)
+* Python 3.11+ (Render uses Python 3.13.x)
 * Git
-* Virtual environment tool (e.g. `venv`)
+* Virtual environment tool (`venv`)
 
-#### Steps
+**Steps**
 
-1. **Clone the Repository**
+1. **Clone the repository**
 
    ```bash
    git clone https://github.com/Leon4721/project_three_restaurant_booking.git
    cd project_three_restaurant_booking
    ```
 
-2. **Create and Activate Virtual Environment**
+2. **Create and activate a virtual environment**
 
    ```bash
    python -m venv venv
+
    # Windows:
    venv\Scripts\activate
+
    # macOS / Linux:
    source venv/bin/activate
    ```
 
-3. **Install Dependencies**
+3. **Install dependencies**
 
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Set Up Environment Variables**
-
-   Create a `.env` file (or use environment variables) with at least:
+4. **Create `.env` for development**
 
    ```text
    SECRET_KEY=your-secret-key
@@ -689,89 +618,87 @@ Initial implementation only used HTML `min` attributes or no validation at all.
    ALLOWED_HOSTS=localhost,127.0.0.1
    ```
 
-5. **Apply Migrations**
+5. **Apply migrations**
 
    ```bash
    python manage.py migrate
    ```
 
-6. **Create Superuser (for admin)**
+6. **Create a superuser**
 
    ```bash
    python manage.py createsuperuser
    ```
 
-7. **Run Development Server**
+7. **Run the development server**
 
    ```bash
    python manage.py runserver
    ```
 
-   Visit: `http://127.0.0.1:8000/`
-   Admin: `http://127.0.0.1:8000/admin/`
-
----
+   Visit `http://127.0.0.1:8000/` for the site and `http://127.0.0.1:8000/admin/` for the admin.
 
 ### Render Deployment
 
-The project is deployed on **Render**.
+The project is deployed to **Render** as a web service.
 
-High-level steps:
+1. **Push code to GitHub**
 
-1. **Push to GitHub**
+   * Ensure all changes are committed to the `main` branch.
 
-   Make sure all code is committed and pushed to the `main` branch.
+2. **Create a new Web Service on Render**
 
-2. **Create a New Web Service in Render**
+   * Connect Render to your GitHub account.
 
-   * Connect Render to your GitHub repository
-   * Choose the repo: `project_three_restaurant_booking`
-   * Set build command (e.g. `pip install -r requirements.txt`)
-   * Set start command (e.g. `gunicorn restaurant_project.wsgi`)
+   * Select the `project_three_restaurant_booking` repository.
 
-3. **Configure Environment Variables in Render**
+   * Set the **Build Command**:
 
-   * `SECRET_KEY` – production secret key
+     ```text
+     pip install -r requirements.txt
+     ```
+
+   * Set the **Start Command**:
+
+     ```text
+     gunicorn restaurant_project.wsgi
+     ```
+
+3. **Configure environment variables on Render**
+
+   * `SECRET_KEY` – strong production secret key
    * `DEBUG=False`
-   * `ALLOWED_HOSTS=your-render-url.onrender.com`
-   * `DATABASE_URL` – connection URL for Render’s PostgreSQL (if used)
+   * `ALLOWED_HOSTS` – e.g. `project-three-restaurant-booking.onrender.com`
+   * `DATABASE_URL` – Render’s PostgreSQL connection string (if using a managed DB)
 
-4. **Run Migrations on Render**
+4. **Run migrations on Render**
 
-   Use Render’s shell or a deployment hook to run:
+   Using Render’s shell:
 
    ```bash
    python manage.py migrate
+   # Optionally:
    python manage.py createsuperuser
    ```
 
-5. **Verify Deployment**
+5. **Verify deployment**
 
-   * Visit the live URL
-   * Confirm static files load correctly
-   * Test booking, manage, edit, cancel flows
-   * Confirm admin access works and `DEBUG=False` is respected
+   * Visit the live URL.
+   * Check the booking flow: create, manage, edit, cancel.
+   * Confirm static files load correctly.
+   * Confirm `/admin/` is only accessible with valid staff login and that `DEBUG=False` is active.
 
-[↑ Back to Top](#contents)
+### Environment Variables
 
----
+| Variable        | Description                        | Example                                   |
+| --------------- | ---------------------------------- | ----------------------------------------- |
+| `SECRET_KEY`    | Django secret key                  | `django-insecure-...`                     |
+| `DEBUG`         | Debug mode flag                    | `True` (dev) / `False` (prod)             |
+| `DATABASE_URL`  | Database connection string         | `sqlite:///db.sqlite3` or Postgres URL    |
+| `ALLOWED_HOSTS` | Comma-separated list of host names | `localhost,127.0.0.1,my-app.onrender.com` |
 
-## Environment Variables
-
-Key environment variables used:
-
-| Variable        | Description                       | Example                                 |
-| --------------- | --------------------------------- | --------------------------------------- |
-| `SECRET_KEY`    | Django secret key                 | `django-insecure-...`                   |
-| `DEBUG`         | Debug mode flag                   | `True` (dev) / `False` (prod)           |
-| `DATABASE_URL`  | Database connection string        | `sqlite:///db.sqlite3` or Postgres URL  |
-| `ALLOWED_HOSTS` | Comma-separated allowed hostnames | `localhost,127.0.0.1,project-three-...` |
-
-`.env` file should be:
-
-* Present locally for development
-* **Excluded from Git** via `.gitignore`
-* Re-created via Render’s web UI for production
+* `.env` is used locally and **not committed** to version control.
+* On Render, environment variables are configured via the dashboard instead of a `.env` file.
 
 [↑ Back to Top](#contents)
 
@@ -779,34 +706,37 @@ Key environment variables used:
 
 ## Security Features
 
-Café Central follows Django security best practices:
+Café Central follows Django’s recommended security practices:
 
 1. **Authentication & Authorization**
 
-   * Staff authentication via Django’s built-in system
-   * Only authenticated staff can access `/admin/`
-   * Staff accounts created via `createsuperuser`
+   * Staff/admin access uses Django’s built-in auth system.
+   * Only authenticated staff can access `/admin/`.
+   * Staff accounts are created using `createsuperuser` or via admin interface.
 
 2. **CSRF Protection**
 
-   * CSRF tokens used on all POST forms
-   * Enabled by default via Django middleware
+   * CSRF tokens are included on all POST forms.
+   * Enabled by Django middleware by default.
 
 3. **Password Security**
 
-   * Passwords hashed using Django’s default password hasher
-   * Never stored in plain text
+   * Passwords are hashed using Django’s password hashers.
+   * Passwords are never stored in plain text.
 
 4. **Input Validation**
 
-   * Django forms and model validators ensure safe, cleaned input
-   * Past dates and invalid capacities rejected
+   * Django forms and model validation sanitize and validate input.
+   * Business rules prevent past bookings, over-capacity bookings, and invalid codes.
 
-5. **Environment-Based Configuration**
+5. **Environment-based Configuration**
 
-   * `DEBUG=False` in production
-   * Secret key and database credentials stored in environment variables
-   * `.env` not committed to version control
+   * `DEBUG=False` in production to avoid detailed error pages for end users.
+   * Secret values (secret key, DB credentials) stored in environment variables, not in the repository.
+
+6. **HTTPS via Render**
+
+   * Render provides HTTPS, ensuring data in transit between client and server is encrypted.
 
 [↑ Back to Top](#contents)
 
@@ -816,22 +746,26 @@ Café Central follows Django security best practices:
 
 ### Code & Frameworks
 
-* **Django** – Web framework
-* **Bootstrap** – CSS framework for layout and styling
-* **Gunicorn / Whitenoise** – Production server and static files
+* **Django** – Main web framework for models, views and authentication
+* **Bootstrap-style CSS** – Responsive layout and basic styling
+* **Gunicorn** – WSGI server in production
 
 ### Learning Resources
 
-* Code Institute learning materials for Django and back-end development
+* Code Institute learning materials for Django and Back End Development (Unit 3)
 * Django official documentation
-* MDN Web Docs (HTML/CSS/JavaScript references)
-* Stack Overflow for targeted debugging
+* MDN Web Docs for HTML, CSS and general web development
+* Stack Overflow for targeted debugging of Django and deployment issues
 
 ### Acknowledgements
 
-* Code Institute tutors and mentors for guidance on Project 3
-* Friends and family who tested the booking flow and gave feedback
+* Code Institute tutors, mentors, and Slack community for advice and feedback
+* Friends and family who tested the booking flow and provided usability feedback
 
 ---
 
-*This project was built by **Leon Freeman** as part of the Level 5 Diploma in Web Application Development – Unit 3 (Back End Development), demonstrating full-stack capabilities with Django, relational database design, and live deployment.*
+*This project was built by **Leon Freeman** as part of the Level 5 Diploma in Web Application Development – Unit 3 (Back End Development), demonstrating full-stack capabilities with Django, relational database design, and live deployment on Render.*
+
+```
+::contentReference[oaicite:0]{index=0}
+```
