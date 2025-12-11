@@ -537,6 +537,8 @@ Validation and constraints:
 * **Chrome DevTools** – Debugging and responsive testing
 * **W3C HTML/CSS Validators** – Markup and stylesheet validation
 * **flake8 / PEP8** – Python linting and style checks
+* **Lighthouse** - Performance and accessibility audits
+* **WAVE** - Web accessibility evaluation tool
 
 [↑ Back to Top](#contents)
 
