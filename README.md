@@ -273,11 +273,12 @@ Wireframe screenshots for all four pages (Home, Manage Booking, Cancel Booking, 
 
 #### Color Scheme
 
-Café Central uses a warm, restaurant-inspired palette:
+Café Central uses a warm, simple palette:
+![Café Central colour palette](docs/colour-palette.png)
 
 - Deep coffee-style tones for headers and primary accents  
 - Light neutral backgrounds for main content areas  
-- A contrasting accent colour (e.g. warm gold/amber) for buttons and key CTAs  
+- A contrasting accent tone dark and light.
 
 The palette was chosen to:
 
