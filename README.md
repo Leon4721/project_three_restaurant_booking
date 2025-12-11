@@ -621,6 +621,76 @@ Screenshots of the results:
 ![style.css CSS validation](docs/validation/css-style.png)
 ![admin.css CSS validation](docs/validation/css-admin.png)
 
+#### Accessibility Testing – WAVE
+
+The main templates were tested using the **WAVE Web Accessibility Evaluation Tool**.
+
+Initially the home page reported multiple issues (missing labels, orphaned form labels and redundant links).  
+After iterating on the markup (adding labels, improving form structure and reducing duplicate links), the remaining items were:
+
+- 1 × **Error** – empty button (hamburger icon button used for the mobile nav)
+- 2 × **Alerts** – missing first-level heading and a redundant link where a button duplicates a primary action
+
+These remaining items were reviewed and accepted as design trade-offs, and are documented here for transparency.
+
+Screenshots of the final WAVE reports:
+
+- Home page:
+
+  ![WAVE report – home page](docs/validation/wave-home.png)
+
+- Manage booking page:
+
+  ![WAVE report – manage booking page](docs/validation/wave-manage.png)
+
+- Cancel booking page:
+
+  ![WAVE report – cancel booking page](docs/validation/wave-cancel.png)
+
+- Staff login page:
+
+  ![WAVE report – staff login page](docs/validation/wave-staff-login.png)
+
+#### Performance & Best Practices – Lighthouse
+
+Google Lighthouse was run against the deployed site using **Chrome DevTools**.
+
+Desktop – Home page (`/`):
+
+- Performance: **100**
+- Accessibility: **79**
+- Best Practices: **96**
+- SEO: **90**
+
+![Lighthouse – home page desktop report](docs/validation/lighthouse-home-desktop.png)
+
+Mobile – Cancel booking (`/cancel/`):
+
+- Performance: **98**
+- Accessibility: **85**
+- Best Practices: **96**
+- SEO: **90**
+
+![Lighthouse – cancel booking mobile report](docs/validation/lighthouse-cancel-mobile.png)
+
+Mobile – Manage booking (`/manage/`):
+
+- Performance: **98**
+- Accessibility: **85**
+- Best Practices: **96**
+- SEO: **90**
+
+![Lighthouse – manage booking mobile report](docs/validation/lighthouse-manage-mobile.png)
+
+Mobile – Staff login (`/staff-login/`):
+
+- Performance: **98**
+- Accessibility: **83**
+- Best Practices: **96**
+- SEO: **90**
+
+![Lighthouse – staff login mobile report](docs/validation/lighthouse-staff-login-mobile.png)
+
 ---
 
 
