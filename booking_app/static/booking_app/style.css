@@ -1,4 +1,9 @@
-/* Global body style */
+:root {
+    --primary-blue: #2c5aa0;
+    --hover-brown: #8b4513;
+}
+.btn-primary { background-color: var(--primary-blue); }
+.btn-primary:hover { background-color: var(--hover-brown); }
 body {
     background: #f6f2ec;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
