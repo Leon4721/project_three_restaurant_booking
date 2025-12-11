@@ -1,0 +1,21 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}
+Café Central Staff – {{ title }}{% if subtitle %} | {{ subtitle }}{% endif %}
+{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'booking_app/admin.css' %}">
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+  <a href="{% url 'admin:index' %}">
+    Café Central · Staff Dashboard
+  </a>
+</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
