@@ -38,23 +38,29 @@ body {
     box-shadow: 0 10px 18px rgba(0, 0, 0, 0.08);
 }
 
-/* Default button (blue background, black text) */
+/* ========================================================= */
+/* BUTTON STYLE — FINAL VERSION                              */
+/* ========================================================= */
+
+/* Default (blue background, black text) */
 .btn-coffee-primary {
-    background: #007bff !important;    /* blue */
+    background: #007bff !important;
     border-color: #007bff !important;
-    color: #000 !important;            /* black font */
+    color: #000 !important;
     font-weight: 600;
     border-radius: 0.5rem;
     padding: 0.6rem 1rem;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Hover state (brown background, white text) */
+/* Hover (brown background, white text) */
 .btn-coffee-primary:hover {
-    background: #7a4b17 !important;     /* brown */
+    background: #7a4b17 !important;
     border-color: #7a4b17 !important;
-    color: #fff !important;             /* white font */
+    color: #ffffff !important;
 }
 
+/* ========================================================= */
 
 /* Alerts (Booking confirmation messages) */
 .alert-success {
@@ -64,7 +70,7 @@ body {
     font-weight: 500;
 }
 
-/* Input fields look clean & premium */
+/* Input fields — premium styling */
 input, select, textarea {
     background-color: #ffffff !important;
     color: #2b2b2b !important;
@@ -88,10 +94,6 @@ input:focus, select:focus, textarea:focus {
     font-weight: 700;
     color: #7a4b17;
     font-size: 1rem;
-}
-
-.btn-coffee-primary {
-    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 /* Footer */
