@@ -5,16 +5,18 @@ from .forms import BookingForm, CancelBookingForm
 from .forms import EditBookingForm
 
 
-
 # -----------------------
-# HOME - CREATE BOOKING
+# HOME - CREATE BOOKING + SHOW MENU
 # -----------------------
 def home(request):
+    # Always load menu items for the right-hand card
+    menu_items = MenuItem.objects.all().order_by("name")
+
     if request.method == "POST":
         form = BookingForm(request.POST)
         if form.is_valid():
 
-            # Check for double booking
+            # Check for double booking at the same date & time
             date = form.cleaned_data['date']
             time = form.cleaned_data['time']
 
@@ -24,11 +26,13 @@ def home(request):
 
             booking = form.save()
             return redirect('booking_confirmation', code=booking.booking_code)
-
     else:
         form = BookingForm()
 
-    return render(request, 'booking_app/home.html', {'form': form})
+    return render(request, 'booking_app/home.html', {
+        'form': form,
+        'menu_items': menu_items,
+    })
 
 
 # -----------------------
