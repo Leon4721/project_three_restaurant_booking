@@ -274,7 +274,8 @@ Wireframe screenshots for all four pages (Home, Manage Booking, Cancel Booking, 
 #### Color Scheme
 
 Café Central uses a warm, simple palette:
-![Café Central colour palette](docs/colour-palette.png)
+
+
 
 - Deep coffee-style tones for headers and primary accents  
 - Light neutral backgrounds for main content areas  
@@ -540,6 +541,13 @@ Validation and constraints:
 * **flake8 / PEP8** – Python linting and style checks
 * **Lighthouse** - Performance and accessibility audits
 * **WAVE** - Web accessibility evaluation tool
+
+#### Python Code Linting
+
+Python files were checked using **flake8**:
+
+```bash
+flake8 .
 
 [↑ Back to Top](#contents)
 
