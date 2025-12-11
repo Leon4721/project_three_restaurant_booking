@@ -174,15 +174,24 @@ This project aims to demonstrate:
 ### Design
 #### Wireframes
 
-All wireframes were created using **Balsamiq** to plan the layout for four key pages:
+All wireframes were created using **Balsamiq**.  
+Each image shows the layout for **desktop, tablet and mobile** for a single page.
 
-- Home page
-- Manage booking page
-- Cancel booking page
-- Staff login page
+##### Home Page
 
-Each page was designed for **mobile**, **tablet**, and **desktop** breakpoints.  
-Final implementations may differ slightly from the wireframes where usability or responsiveness improvements were identified during development.
+![Home page wireframes (desktop, tablet, mobile)](docs/wireframes/home-wireframes.png)
+
+##### Manage Booking Page
+
+![Manage booking page wireframes (desktop, tablet, mobile)](docs/wireframes/manage-wireframes.png)
+
+##### Cancel Booking Page
+
+![Cancel booking page wireframes (desktop, tablet, mobile)](docs/wireframes/cancel-wireframes.png)
+
+##### Staff Login Page
+
+![Staff login page wireframes (desktop, tablet, mobile)](docs/wireframes/staff-login-wireframes.png)
 
 ---
 
