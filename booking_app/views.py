@@ -61,7 +61,20 @@ def cancel(request):
 
     return render(request, 'booking_app/cancel_booking.html', {'form': form})
 
+def cancel_booking(request):
+    if request.method == "POST":
+        code = request.POST.get("booking_code")
+        email = request.POST.get("email")
 
+        try:
+            booking = Booking.objects.get(booking_code=code, email=email)
+            booking.delete()
+            messages.success(request, "Your booking has been cancelled.")
+            return redirect('home')
+        except Booking.DoesNotExist:
+            messages.error(request, "No booking found with that code and email.")
+
+    return render(request, 'booking_app/cancel_booking.html')
 # -----------------------
 # MANAGE BOOKING (step 1)
 # -----------------------

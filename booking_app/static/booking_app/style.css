@@ -125,3 +125,27 @@ footer {
     margin-top: 2rem;
     padding-bottom: 1.5rem;
 }
+.nav-hero {
+  /* Background image behind the nav content */
+  background-image: url("../booking_app/images/header-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* Ensures it's tall enough to show the image nicely */
+  min-height: 80px;
+
+  /* So Bootstrap still treats it as a dark nav */
+  /* (text colours come from .navbar-dark) */
+}
+
+/* Improve readability of text on top of image */
+.nav-hero .navbar-brand,
+.nav-hero .nav-link {
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.nav-hero .nav-link:hover {
+  color: #f8f8f8;
+}
